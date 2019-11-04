@@ -1,3 +1,4 @@
+subject_id,jitter_local,jitter_local_absolute,jitter_rap,jitter_ppq5,jitter_ddp,shimmer_local,shimmer_local_db,shimmer_apq3,shimmer_apq5,shimmer_apq11,shimmer_data,AC,NTH,HTN,median_pitch,mean_pitch,standard_dev_pitch,min_pitch,max_pitch,num_pulses,num_periods,mean_period,standard_dev_period,frac_locally_unvoiced_frames,num_voice_breaks,degree_of_voice_breaks,UPDRS,class_info
 1,1.488,0.000090213,0.9,0.794,2.699,8.334,0.779,4.517,4.609,6.802,13.551,0.905905,0.119116,11.13,166.533,164.781,10.421,142.229,187.576,160,159,0.006064725,0.000416276,0,0,0,23,1
 1,0.728,0.000037698,0.353,0.376,1.059,5.864,0.642,2.058,3.18,7.194,6.175,0.951285,0.066758,17.403,195.252,193.289,14.773,159.515,234.505,170,169,0.005181253,0.000403494,2.247,0,0,23,1
 1,1.22,0.000074041,0.732,0.67,2.196,8.719,0.875,4.347,5.166,7.548,13.04,0.911508,0.109983,12.212,158.689,164.768,12.981,146.445,211.442,1431,1427,0.006070749,0.000474289,10.656,1,0.178,23,1
