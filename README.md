@@ -23,11 +23,12 @@ The training data were gathered from 20 patients with Parkinsons and 20 health i
 **Features Training Data File:**
 * column 1: Subject id
 * columns 2-27: features
-* features 1-5: Jitter (local),Jitter (local, absolute),Jitter (rap),Jitter (ppq5),Jitter (ddp),
-* features 6-11: Shimmer (local),Shimmer (local, dB),Shimmer (apq3),Shimmer (apq5), Shimmer (apq11),Shimmer (dda),
-* features 12-14: AC,NTH,HTN,
-* features 15-19: Median pitch,Mean pitch,Standard deviation,Minimum pitch,Maximum pitch,
-* features 20-23: Number of pulses,Number of periods,Mean period,Standard deviation of period, features 24-26: Fraction of * * locally unvoiced frames,Number of voice breaks,Degree of voice breaks
+* features 1-5: Jitter (local), Jitter (local, absolute), Jitter (rap), Jitter (ppq5), Jitter (ddp),
+* features 6-11: Shimmer (local), Shimmer (local, dB), Shimmer (apq3), Shimmer (apq5), Shimmer (apq11), Shimmer (dda)
+* features 12-14: AC,NTH,HTN
+* features 15-19: Median pitch, Mean pitch, Standard deviation, Minimum pitch, Maximum pitch
+* features 20-23: Number of pulses, Number of periods, Mean period, Standard deviation of period
+* features 24-26: Fraction of locally unvoiced frames, Number of voice breaks, Degree of voice breaks
 * column 28: UPDRS
 * column 29: class information
 
@@ -47,8 +48,8 @@ The data was gathered from 42 people with early-stage Parkinson's disease. There
 * test_time - Time since recruitment into the trial. The integer part is the number of days since recruitment.
 * motor_UPDRS - Clinician's motor UPDRS score, linearly interpolated
 * total_UPDRS - Clinician's total UPDRS score, linearly interpolated
-* Jitter(%),Jitter(Abs),Jitter:RAP,Jitter:PPQ5,Jitter:DDP - Several measures of variation in fundamental frequency
-* Shimmer,Shimmer(dB),Shimmer:APQ3,Shimmer:APQ5,Shimmer:APQ11,Shimmer:DDA - Several measures of variation in amplitude
+* Jitter(%), Jitter(Abs), Jitter:RAP, Jitter:PPQ5, Jitter:DDP - Several measures of variation in fundamental frequency
+* Shimmer, Shimmer(dB), Shimmer:APQ3, Shimmer:APQ5, Shimmer:APQ11, Shimmer:DDA - Several measures of variation in amplitude
 * NHR,HNR - Two measures of ratio of noise to tonal components in the voice
 * RPDE - A nonlinear dynamical complexity measure
 * DFA - Signal fractal scaling exponent
@@ -61,8 +62,14 @@ Multiple Sound Recoring Training | 1040 | 29
 Multiple Sound Recoring Testing | 168 | 28
 Telemonitoring | 5875 | 22
 
+Immediately, we notice that the dimensionality of the DC dataset is very high in comparison to the other two datasets, with about 30 times the number of features. This is due to the speech signal processing algorithms that are run on the voice recordings on this dataset, including Time Frequency Features, Mel Frequency Cepstral Coefficients (MFCCs), Wavelet Transform based Features, Vocal Fold Features and TWQT features. These processes create many features.
 
+We also note that the DC and MSR datasets have a similar number of instances, while the TE dataset has over 5 times as many instances. None of these datasets are particularly large.
 
+## References
+1. Rascol, O.,Payoux, P.,Ory, F.,Ferreira, J. J., Brefel-Courbon, C. and Montastruc, J. (2003), Limitations of current Parkinson's disease therapy. Ann Neurol., 53: S3-S15.
+2. Pagan, F. L., (2012). Improving outcomes through early diagnosis of Parkinson’s disease. The American Journal of Managed Care, 18, 176-182. 
+3. Vaiciukynas, E., Verikas, A., Gelzinis, A., & Bacauskiene, M. (2017). Detecting Parkinson's disease from sustained phonation and speech signals. PloS one, 12(10), e0185613. doi:10.1371/journal.pone.0185613
 
 
 
