@@ -4,8 +4,7 @@ Parkinson’s disease (PD) is the most common neuro-degenerative movement disord
 One strategy for early detection of PD is speech pattern recognition. PD vocal dysfunction may be identified 5 years before traditional diagnoses by changes including, reduced volume and tongue flexibility, narrow pitch range, and long pauses [3]. In this project, we used various speech-related data sets to classify and predict PD disease severity.
 
 ## Data Description
-### [Disease Classification (DC) Dataset] 
-(https://archive.ics.uci.edu/ml/datasets/Parkinson%27s+Disease+Classification#)
+### [Disease Classification (DC) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson%27s+Disease+Classification#)
 The data used in this study were gathered from 188 patients with Parkinsons and 64 healthy individuals. Researchers recorded the participants sustaining the phonation of the vowel /a/ for three repetitions.
 
 Speech signal processing algorithms including Time Frequency Features, Mel Frequency Cepstral Coefficients (MFCCs), Wavelet Transform based Features, Vocal Fold Features and TWQT features were also applied to the speech recordings to extract clinically useful information for PD assessment.
@@ -38,8 +37,7 @@ The testing data were gathered from 28 different patients with Parkinsons. The p
 * 1-3: sustained vowel (aaaâ€¦â€¦)
 * 4-6: sustained vowel (oooâ€¦â€¦)
 
-### [Telemonitoring (TE) Dataset] 
-(http://archive.ics.uci.edu/ml/datasets/Parkinsons+Telemonitoring)
+### [Telemonitoring (TE) Dataset](http://archive.ics.uci.edu/ml/datasets/Parkinsons+Telemonitoring)
 The data was gathered from 42 people with early-stage Parkinson's disease. There are 16 voice measures, and two regression measurements: motor UPDRS and total UPDRS. Each row of the dataset contain corresponds to one voice recording. There are around 200 recordings per patient, the subject number of the patient is identified in the first column.
 
 **Features**
