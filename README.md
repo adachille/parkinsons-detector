@@ -54,7 +54,12 @@ The data was gathered from 42 people with early-stage Parkinson's disease. There
 * DFA - Signal fractal scaling exponent
 * PPE - A nonlinear measure of fundamental frequency variation
 
-
+Dataset | Features | Data Points
+------------ | ------------- | -------------
+Disease Classification | 756 | 755
+Multiple Sound Recoring Training | 1040 | 29
+Multiple Sound Recoring Testing | 168 | 28
+Telemonitoring | 5875 | 22
 
 
 
