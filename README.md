@@ -127,6 +127,7 @@ To improve the accuracy of our classifiers and PD predicitons, we combined the M
 
 We reduced the MSR training set and TE datasets to these features and performed predictions. As you can see, after combining both sets, our accuracy improved for each classifier.
 
+### Classification: PD and non-PD patients
 * Accuracy of each classifier: 
 
 Classifier | MSR Train | MSR Train & TE
@@ -143,6 +144,14 @@ Kernel | MSR Train | MSR Train & TE
 Linear | 51.7% | 100%
 RBF | 64.1% | 99.4%
 Poly | 79.8% | 96.4%
+
+### Regression: UPDRS scores
+Since we have UPDRS scores for the MSR training dataset and the TE dataset, we wanted to test if we could predict these scores with random forest regression. Again, we will use the TE and MSR training combined set. This time, the data will be normalized (l2 norm) before using the supervised learning algorithms.
+ 
+ #### Optimizing number of estimators/trees hyperparameter
+ <img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/RFtreeestimators.png" width="300" height="200">
+
+ <img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/RandomForestRegression_MSR.jpg">
 
 ## References
 1. Rascol, O.,Payoux, P.,Ory, F.,Ferreira, J. J., Brefel-Courbon, C. and Montastruc, J. (2003), Limitations of current Parkinson's disease therapy. Ann Neurol., 53: S3-S15.
