@@ -4,6 +4,16 @@ Parkinson’s disease (PD) is the most common neuro-degenerative movement disord
 One strategy for early detection of PD is speech pattern recognition. PD vocal dysfunction may be identified 5 years before traditional diagnoses by changes including, reduced volume and tongue flexibility, narrow pitch range, and long pauses [3]. In this project, we used various speech-related data sets to classify and predict PD disease severity.
 
 ## Data Description
+The aim of this project is to predict Parkinson's presence, and disease severity. The Unified Parkinson Disease Rating Scale (UPDRS) is a rating tool used to understand the course of PD in patients. The UPDRS scale is used for determining treatment strategies and for PD clinical research purposes. The scale includes ratings for PD symptoms falling and is comprised of 6 parts: 
+1. Mentation, Behavior, and Mood
+2. Activities of Daily Living
+3. Motor Examination
+4. Complications of Therapy
+5. Modified Hoehn and Yahr Scale
+6. Schwab and England Activities of Daily Living Scale
+
+UPDRS scores range from 0 to 199, with 199 representing the greatest disease severity, or total disability [4].
+
 ### [Disease Classification (DC) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson%27s+Disease+Classification#)
 The data used in this study were gathered from 188 patients with Parkinsons and 64 healthy individuals. Researchers recorded the participants sustaining the phonation of the vowel /a/ for three repetitions.
 
@@ -66,10 +76,50 @@ Immediately, we notice that the dimensionality of the DC dataset is very high in
 
 We also note that the DC and MSR datasets have a similar number of instances, while the TE dataset has over 5 times as many instances. None of these datasets are particularly large.
 
+## Intial Data Exploration & Unsupervised Learning
+### Response data: Parkinson's Disease Severity, or UPDRS 
+predicting the presence of Parkinson’s through the Unified Parkinson Disease Rating Scale (UPDRS)
+
+### Covariance Matrices
+
+First we will begin by creating visualizations for the correlation matrix of each dataset. We will be using a special heatmap that encodes correlation using not only color, but size. The code for this visualization is taken from this [tutorial](https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec).
+
+#### Telemonitoring
+<img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/Telemonitoring-correlation-matrix.jpg" width="500" height="500">
+
+#### Multiple Sound Recording 
+These datasets have two separate train and test datasets. The data are drawn from very different distributions of people: the training dataset comes from a mix of people with and without Parkinson's, and the testing dataset is entirely composed of data collected from people with Parkinson's.
+We can graph the covariance matrix of both datasets and see if they differ.
+
+##### Training Data Set
+
+<img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/multiple-sound-recoring-train-correlation-matrix.jpg" width="500" height="500">
+
+###### Testing Data Set
+<img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/multiple-sound-recoring-test-correlation-matrix.jpg" width="500" height="500">
+
+### Dimension Reduction: 
+Each dataset has many features, and from the covariance matrices we see that some features are highly correlated, so let's try doing some dimensionality reduction using PCA and LDA.
+
+Let's begin by using PCA on the datasets and seeing how many components we need to recover 99% of the variance.
+#### Principal Component Analysis
+Dataset | # of Features | Reduced # of Components
+------------ | ------------- | -------------
+Disease Classification | 755 | 270
+Multiple Sound Recoring Training | 29 | 17
+Multiple Sound Recoring Testing | 28 | 12
+Telemonitoring | 22 | 11
+
+We can see a great reduction in the number of components describing 99% of the variance in these datasets.
+
+Now, let's visualize the first two components of the TE and MSR train dataset. We've colored datapoints by the UPDRS score, a measure of PD severity. 
+<img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/PCA_LDA_TE_MSRtrain.jpg">
+
 ## References
 1. Rascol, O.,Payoux, P.,Ory, F.,Ferreira, J. J., Brefel-Courbon, C. and Montastruc, J. (2003), Limitations of current Parkinson's disease therapy. Ann Neurol., 53: S3-S15.
 2. Pagan, F. L., (2012). Improving outcomes through early diagnosis of Parkinson’s disease. The American Journal of Managed Care, 18, 176-182. 
 3. Vaiciukynas, E., Verikas, A., Gelzinis, A., & Bacauskiene, M. (2017). Detecting Parkinson's disease from sustained phonation and speech signals. PloS one, 12(10), e0185613. doi:10.1371/journal.pone.0185613
+4. UPDRS SCALE [Internet]. Theracycle. PD Resources; [cited 2019Nov16]. Available from: https://www.theracycle.com/pd-resources/links-and-additional-resources/updrs-scale/
 
 
 
