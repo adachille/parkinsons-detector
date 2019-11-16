@@ -1,0 +1,80 @@
+PCA ANALYSES:
+
+PCA Anlaysis of DC
+Old shape of data: (756, 755)
+Components making 99% of variance: 270
+New shape of data: (756, 270)
+
+PCA Anlaysis of TE
+Old shape of data: (5875, 22)
+Components making 99% of variance: 11
+New shape of data: (5875, 11)
+
+PCA Anlaysis of MSR Train
+Old shape of data: (1040, 29)
+Components making 99% of variance: 17
+New shape of data: (1040, 17)
+
+PCA Anlaysis of MSR Test
+Old shape of data: (168, 28)
+Components making 99% of variance: 12
+New shape of data: (168, 12)
+
+PCA Anlaysis of MSR+TE
+Components making 99% of variance: 8
+______________________________________
+
+LDA ANALYSES:
+
+______________________________________
+
+CLASSIFICATIION USING PCA FOR DIM REDUCTION:
+
+MSR Dataset
+Linear Accuracy: %f 0.5178571428571429
+RBF Accuracy: %f 0.5416666666666666
+Poly Accuracy: %f 0.7976190476190477
+Random Forest Accuracy: %f 0.5714285714285714
+Decision Tree Accuracy: %f 0.6130952380952381
+Naive Bayes Accuracy: %f 0.8452380952380952
+Neural Network Accuracy: %f 0.6547619047619048
+
+MSR+TE Dataset
+Linear Accuracy: 100.0 %
+RBF Accuracy: 99.4 %
+Poly Accuracy: 96.39999999999999 %
+Random Forest Accuracy: 100.0 %
+Decision Tree Accuracy: 80.4 %
+Naïve Bayes Accuracy: 86.9 %
+Neural Network Accuracy: 100.0 %
+______________________________________
+
+REGRESSION FOR MSR+TE DATASET (no PCA):
+
+RandomForest 100 Trees -
+Mean Absolute Error: 9.21
+Root Mean Squared Error: 11.59
+
+After removing patients with UPDRS scores of 1
+Mean Absolute Error: 8.56
+Root Mean Squared Error: 10.68
+
+
+Extra Trees Regressor
+Mean Absolute Error: 8.3
+Root Mean Squared Error: 10.46
+______________________________________
+
+REGRESSION FOR MSR+TE DATASET (PCA):
+
+RandomForest 100 Trees -
+Mean Absolute Error: 8.64
+Root Mean Squared Error: 11.27
+
+After removing patients with UPDRS scores of 1
+Mean Absolute Error: 8.08
+Root Mean Squared Error: 10.23
+
+Extra Trees Regressor
+Mean Absolute Error: 8.16
+Root Mean Squared Error: 10.26
