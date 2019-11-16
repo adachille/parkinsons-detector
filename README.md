@@ -76,9 +76,12 @@ Immediately, we notice that the dimensionality of the DC dataset is very high in
 
 We also note that the DC and MSR datasets have a similar number of instances, while the TE dataset has over 5 times as many instances. None of these datasets are particularly large.
 
+### Response data: UPDRS 
+Distributions of UPDRS scores:
+
+<img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/UPDRS_TE_MSR.jpg">
+
 ## Intial Data Exploration & Unsupervised Learning
-### Response data: Parkinson's Disease Severity, or UPDRS 
-predicting the presence of Parkinson’s through the Unified Parkinson Disease Rating Scale (UPDRS)
 
 ### Covariance Matrices
 
@@ -115,47 +118,34 @@ We can see a great reduction in the number of components describing 99% of the v
 Now, let's visualize the first two components of the TE and MSR train dataset. We've colored datapoints by the UPDRS score, a measure of PD severity. 
 <img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/PCA_LDA_TE_MSRtrain.jpg">
 
+## Supervised Learning & Prediciton of PD
+### Datasets
+For this section, we explored the prediction of PD in the MSR testing set from 1) the MSR training set and 2) an aggregated TE and MSR training data set.
+
+#### Aggregating TE and MSR training
+To improve the accuracy of our classifiers and PD predicitons, we combined the MSR training and TE datasets to perform predictions on the MSR test data set. The MSR and TE datasets had 13 overlapping features: Jitter, Jitter(Abs), Jitter:RAP, Jitter:PPQ5, Jitter:DDP, Shimmer, Shimmer(dB), Shimmer:APQ3, Shimmer:APQ5, Shimmer:APQ11, Shimmer:DDA, NHR, and HNR.
+
+We reduced the MSR training set and TE datasets to these features and performed predictions. As you can see, after combining both sets, our accuracy improved for each classifier.
+
+* Accuracy of each classifier: 
+
+Classifier | MSR Train | MSR Train & TE
+------------ | ------------- | -------------
+Random Forest Classifier | 57.1% | 100%
+Decision Tree | 61.3% | 80.4%
+Naïve Bayes | 84.5% | 86.9%
+Neural Network | 65.5% | 100%
+
+* Random Forest Classifier:
+
+Kernel | MSR Train | MSR Train & TE
+------------ | ------------- | -------------
+Linear | 51.7% | 100%
+RBF | 64.1% | 99.4%
+Poly | 79.8% | 96.4%
+
 ## References
 1. Rascol, O.,Payoux, P.,Ory, F.,Ferreira, J. J., Brefel-Courbon, C. and Montastruc, J. (2003), Limitations of current Parkinson's disease therapy. Ann Neurol., 53: S3-S15.
 2. Pagan, F. L., (2012). Improving outcomes through early diagnosis of Parkinson’s disease. The American Journal of Managed Care, 18, 176-182. 
 3. Vaiciukynas, E., Verikas, A., Gelzinis, A., & Bacauskiene, M. (2017). Detecting Parkinson's disease from sustained phonation and speech signals. PloS one, 12(10), e0185613. doi:10.1371/journal.pone.0185613
 4. UPDRS SCALE [Internet]. Theracycle. PD Resources; [cited 2019Nov16]. Available from: https://www.theracycle.com/pd-resources/links-and-additional-resources/updrs-scale/
-
-
-
-
-You can use the [editor on GitHub](https://github.com/adachille/parkinsons-detector/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/adachille/parkinsons-detector/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
