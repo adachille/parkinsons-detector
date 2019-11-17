@@ -14,6 +14,8 @@ The aim of this project is to predict Parkinson's presence, and disease severity
 
 UPDRS scores range from 0 to 199, with 199 representing the greatest disease severity, or total disability [4].
 
+We include three datasets in our project as the training data. We use MSR for predicting Parkinsons's presence and use TE or the combination of TE and MSR for predicting disease severity (UPDRS).
+
 ### [Disease Classification (DC) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson%27s+Disease+Classification#) [5]
 The data used in this study were gathered from 188 patients with Parkinsons and 64 healthy individuals. Researchers recorded the participants sustaining the phonation of the vowel /a/ for three repetitions.
 
@@ -150,10 +152,15 @@ RBF | 64.1% | 99.4%
 Poly | 79.8% | 96.4%
 
 ### Regression: UPDRS scores
-Since we have UPDRS scores for the MSR training dataset and the TE dataset, we wanted to test if we could predict these scores with random forest regression. Again, we will use the TE and MSR training combined set. This time, the data will be normalized (l2 norm) before using the supervised learning algorithms.
+Since we have UPDRS scores for the MSR training dataset and the TE dataset, we wanted to test if we could predict these scores with random forest regression. Again, we will use the TE and MSR training combined set. This time, the data will be normalized (l2 norm) before using the supervised learning algorithms. For both set, we only choose the patient with Parkinson disease as our training data. To evaluate our result, we inherit the evaluating method proposed by the original paper, which split 10% data from TE dataset for cross-validation testing and report the Mean Absolute Error (MAE) at the testing subset.
+
+Method | MAE
+------------ | -------------
+Random Forest Regressor | 8.56
+Extra Trees Regressor | 8.3
  
- #### Optimizing number of estimators/trees hyperparameter
- 
+#### Optimizing number of estimators/trees hyperparameter
+
  <img src="./visualizations/RFtreeestimators.png" width="300" height="200">
 
  <img src="./visualizations/RandomForestRegression_MSR.jpg">
