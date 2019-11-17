@@ -176,7 +176,7 @@ Extra Trees Regressor | PCA | 4.38
 
 * Training on TE & MSR combination
 
-We also try to train our regression model with the aggregated set. However, the result doesn't improve a lot. This might be caused by the varant across these two dataset. More experiment needs to be done in the future for validation.
+We also try to train our regression model with the aggregated set. However, the result doesn't improve a lot. This might be caused by the variance across these two dataset. More experiment needs to be done in the future for validation.
 
 Method | MAE
 ------------ | -------------
