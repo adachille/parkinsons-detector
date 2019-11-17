@@ -139,7 +139,7 @@ For the latter, we found 13 overlapping features: Jitter, Jitter(Abs), Jitter:RA
 
 At this point, we used the MSR training set and the aggregated set to train binary classification models and tested them on the MSR testing set. In the testing set, all of the samples have PD. Our goal is to identify the accuracy of diagnose PD disease among these patients. We also compare performance on different algorithm. As shown in the following table, Naive Bayes can achieve the best result when using MSR training set. Moreover, after combining both sets, our accuracy improved for each classifier. However, there is also a concern here that samples with and without disease are very imbalanced in the combined set. The improvement might be caused by overfitting.
 
-* Accuracy of each classifier:
+#### Accuracy of each classifier:
 
 Classifier | MSR Train | MSR Train & TE
 ------------ | ------------- | -------------
@@ -148,7 +148,7 @@ Decision Tree | 61.3% | 80.4%
 Naïve Bayes | 84.5% | 86.9%
 Neural Network | 65.5% | 100%
 
-* SVM Classifier:
+#### SVM Classifier:
 
 Kernel | MSR Train | MSR Train & TE
 ------------ | ------------- | -------------
@@ -158,12 +158,12 @@ Poly | 79.8% | 96.4%
 
 ### Regression: UPDRS scores
 
-Since we have UPDRS scores for the MSR training dataset and the TE dataset, we wanted to test if we could predict these scores with different regression models. We first explore the TE dataset for training our models and then use the TE and MSR training combined set. This time, the combined data set will be normalized (l2 norm) before using the supervised learning algorithms. For both setting, we only choose the patient with Parkinson disease as our training data. To evaluate our result, we inherit the evaluating method proposed by the original paper, which split 10% and 90% data from TE dataset for 10 fold cross-validation and report the Mean Absolute Error (MAE) at the testing subset.
+Since we have UPDRS scores for the MSR training dataset and the TE dataset, we wanted to test if we could predict these scores with different regression models. We first explore the TE dataset for training our models and then use the TE and MSR training combined set. This time, the combined data set will be normalized (l2 norm) before using the supervised learning algorithms. For both, we only choose patients with Parkinson disease for our training data. To evaluate our result, we utilize the evaluation method proposed by the original paper, which split 10% and 90% data from TE dataset for 10 fold cross-validation and report the Mean Absolute Error (MAE) at the testing subset.
 
-* Training on TE
+#### Training on TE
 
 We report the best result proposed by the original paper, which used Jitter(Abs), :Shimmer, NHR, HNR,
-DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model. In our experiment, we proposed to use Random Forest Regressor and Extra Trees Regressor as our models and leverage different feature processing methods for pre-processing our training data. We compare three methods 1) using original features 2) log transformation to the features and 3) PCA feature reduction. The reseult is shown in the followng table. We have tried vaious regression model and report the best two model here. By using Extra Trees Regressor and PCA component, we can achieve best MAE score 4.38, which shows PCA has the ability to efficiently capture corelated feature.
+DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model. In our experiment, we leveraged different feature processing methods for pre-processing our training data. We compare three methods 1) using original features 2) log transformation of the features and 3) PCA feature reduction. The results are shown in the followng table. We also tried various regression models and report the best two models (Random Forest Regressor and Extra Trees Regressor) here. By using Extra Trees Regressor and PCA dimension reduction, we can achieve an MAE score 4.38, which shows PCA has the ability to effectively improve the accuracy of these regressors and capture feature correlation.
 
 Method | feature | MAE
 ------------ | ------------- | -------------
@@ -174,14 +174,16 @@ Random Forest Regressor | log transform | 6.42
 Random Forest Regressor | PCA | 4.81
 Extra Trees Regressor | PCA | 4.38
 
-* Training on TE & MSR combination
+#### Training on TE & MSR combination
 
-We also try to train our regression model with the aggregated set. However, the result doesn't improve a lot. This might be caused by the variance across these two dataset. More experiment needs to be done in the future for validation.
+We also try to train our regression model with the aggregated set. 
 
 Method | MAE
 ------------ | -------------
 Random Forest Regressor | 8.56
 Extra Trees Regressor | 8.3
+
+While the accuracies of the models trained on the joint dataset are worse, this is almost certainly due to the inherent differences in the two datasets. The TE dataset has over 100s of samples from each individual over time, while the MSR dataset has significantly less. Furthermore, the MSR dataset has participants say a preselected set of phrases, while the TE dataset is a collection of varying and unscripted phrases from participants. It is possible that this mix of data leads to a more generalized, better model, but more experiment needs to be done to determine this.
 
 ## Applying our Models to Available Data
 One of the larger open datasets is the Mozilla Foundation's [Common Voice](voice.mozilla.org) dataset. It has 2454 hours of sound recordings spanning 29 languages. The data is published under C-0 license, which means all data is public domain.
@@ -191,7 +193,7 @@ To reduce the data-points processed, the models were only tested on validated Am
 ### Dataset Composition
 Total Samples: 46,813
 
-Age | Numbe of Samples
+Age | Number of Samples
 ------------ | -------------
 40's | 21,824
 50's  | 10,700
@@ -201,7 +203,7 @@ Age | Numbe of Samples
 90's  | 53
 
 ### Results
-* Classifier Predictions (MSR Train & TE):
+#### Classifier Predictions (MSR Train & TE):
 
 Classifier | Prediction
 ------------ | -------------
@@ -210,7 +212,7 @@ Decision Tree | Insert Percent%
 Naïve Bayes |  Insert Percent%
 Neural Network |  Insert Percent%
 
-* SVM Predictions by Kernel:
+#### SVM Predictions by Kernel:
 
 Kernel | Prediction
 ------------ | -------------
