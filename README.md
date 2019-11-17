@@ -16,12 +16,15 @@ UPDRS scores range from 0 to 199, with 199 representing the greatest disease sev
 
 We include three datasets in our project as the training data. We use MSR for predicting Parkinsons's presence and use TE or the combination of TE and MSR for predicting disease severity (UPDRS).
 
+
 ### [Disease Classification (DC) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson%27s+Disease+Classification#) [5]
 The data used in this study were gathered from 188 patients with Parkinsons and 64 healthy individuals. Researchers recorded the participants sustaining the phonation of the vowel /a/ for three repetitions.
 
 Speech signal processing algorithms including Time Frequency Features, Mel Frequency Cepstral Coefficients (MFCCs), Wavelet Transform based Features, Vocal Fold Features and TWQT features were also applied to the speech recordings to extract clinically useful information for PD assessment.
 
 ### [Multiple Sound Recording (MSR) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson+Speech+Dataset+with++Multiple+Types+of+Sound+Recordings) [6]
+
+##### Training data
 The training data were gathered from 20 patients with Parkinsons and 20 health individuals. Multiple types of sound recordings were taken from each participant (listed below) and expert physicians assigned each participant a Unified Parkinson's Disease Rating Scale (UPDRS) score.
 
 **Utterances**
@@ -44,6 +47,7 @@ The training data were gathered from 20 patients with Parkinsons and 20 health i
 * column 28: UPDRS
 * column 29: class information
 
+##### Testing data
 The testing data were gathered from 28 different patients with Parkinsons. The patients are asked to say only the sustained vowels 'a' and 'o' three times each, producing 168 recordings. The same 26 features are extracted from the voice samples.
 
 **Utterances**
@@ -69,7 +73,7 @@ The data was gathered from 42 people with early-stage Parkinson's disease. There
 
 ### Dataset Comparison
 
-Dataset | Features | Data Points
+Dataset | Data Points | Features 
 ------------ | ------------- | -------------
 Disease Classification | 756 | 755
 Multiple Sound Recoring Training | 1040 | 29
@@ -78,9 +82,10 @@ Telemonitoring | 5875 | 22
 
 Immediately, we notice that the dimensionality of the DC dataset is very high in comparison to the other two datasets, with about 30 times the number of features. This is due to the speech signal processing algorithms that are run on the voice recordings on this dataset, including Time Frequency Features, Mel Frequency Cepstral Coefficients (MFCCs), Wavelet Transform based Features, Vocal Fold Features and TWQT features. These processes create many features.
 
-We also note that the DC and MSR datasets have a similar number of instances, while the TE dataset has over 5 times as many instances. None of these datasets are particularly large.
+We also note that the DC and MSR datasets have a similar number of instances, while the TE dataset has over 5 times as many instances. None of these datasets are particularly large. As a result, in our experiment, we mainly use MSR and TE for training both classification and regression models, while leaving DC dataset as our future work to improve our method. 
 
 ### Response data: UPDRS
+Although TE and MSR have different score distribution, but their score range is similar. As a result, we try to merge these two dataset to build a larger dataset as our training data.
 Distributions of UPDRS scores:
 
 <img src="./visualizations/UPDRS_TE_MSR.jpg">
@@ -92,7 +97,7 @@ Distributions of UPDRS scores:
 First we will begin by creating visualizations for the correlation matrix of each dataset. We will be using a special heatmap that encodes correlation using not only color, but size. The code for this visualization is taken from this [tutorial](https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec).
 
 #### Telemonitoring
-<img src="./visualizations/Telemonitoring-correlation-matrix.jpg" width="500" height="500">
+<img src="./visualizations/Telemonitoring-correlation-matrix.jpg" width="700" height="700">
 
 #### Multiple Sound Recording
 These datasets have two separate train and test datasets. The data are drawn from very different distributions of people: the training dataset comes from a mix of people with and without Parkinson's, and the testing dataset is entirely composed of data collected from people with Parkinson's.
@@ -100,10 +105,10 @@ We can graph the covariance matrix of both datasets and see if they differ.
 
 ##### Training Data Set
 
-<img src="./visualizations/multiple-sound-recoring-train-correlation-matrix.jpg" width="500" height="500">
+<img src="./visualizations/multiple-sound-recoring-train-correlation-matrix.jpg" width="700" height="700">
 
 ###### Testing Data Set
-<img src="./visualizations/multiple-sound-recoring-test-correlation-matrix.jpg" width="500" height="500">
+<img src="./visualizations/multiple-sound-recoring-test-correlation-matrix.jpg" width="700" height="700">
 
 ### Dimension Reduction:
 Each dataset has many features, and from the covariance matrices we see that some features are highly correlated, so let's try doing some dimensionality reduction using PCA and LDA.
@@ -128,12 +133,12 @@ Now, let's visualize the first two components of the TE and MSR train dataset. W
 ### Datasets
 For this section, we explored the prediction of PD in the MSR testing set from 1) the MSR training set and 2) an aggregated TE and MSR training data set.
 
-#### Aggregating TE and MSR training
-To improve the accuracy of our classifiers and PD predicitons, we combined the MSR training and TE datasets to perform predictions on the MSR test data set. The MSR and TE datasets had 13 overlapping features: Jitter, Jitter(Abs), Jitter:RAP, Jitter:PPQ5, Jitter:DDP, Shimmer, Shimmer(dB), Shimmer:APQ3, Shimmer:APQ5, Shimmer:APQ11, Shimmer:DDA, NHR, and HNR.
-
-We reduced the MSR training set and TE datasets to these features and performed predictions. As you can see, after combining both sets, our accuracy improved for each classifier.
+For the second setting, we combined the MSR training and TE datasets, which had 13 overlapping features: Jitter, Jitter(Abs), Jitter:RAP, Jitter:PPQ5, Jitter:DDP, Shimmer, Shimmer(dB), Shimmer:APQ3, Shimmer:APQ5, Shimmer:APQ11, Shimmer:DDA, NHR, and HNR. We reduced the MSR training set and TE datasets to these features and performed predictions.
 
 ### Classification: PD and non-PD patients
+
+We use either MSR training set or the aggregated set to train a binary classification model and test on MSR testing set. In the testing set, all of the samples have PD. Our goal is to identify the accuracy of diagnose PD disease among these patients. We also compare performance on different algorithm. As shown in the following table, Naive Bayes can achieve the best result when using MSR training set. Moreover, after combining both sets, our accuracy improved for each classifier. However, there is also a concern here that samples with and without disease are very imbalanced in the combined set. The improvement might be caused by overfitting.
+
 * Accuracy of each classifier:
 
 Classifier | MSR Train | MSR Train & TE
@@ -158,7 +163,7 @@ Since we have UPDRS scores for the MSR training dataset and the TE dataset, we w
 * Training on TE 
 
 We report the best result proposed by the original paper, which used Jitter(Abs), :Shimmer, NHR, HNR,
-DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model. In our experiment, we proposed to use Random Forest Regressor and Extra Trees Regressor as our models and leverage different feature processing methods for pre-processing our training data. We compare three method 1)using original features 2)log transformation to the features and 3)PCA feature reduction. The reseult is shown in the followng table.
+DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model. In our experiment, we proposed to use Random Forest Regressor and Extra Trees Regressor as our models and leverage different feature processing methods for pre-processing our training data. We compare three methods 1) using original features 2) log transformation to the features and 3) PCA feature reduction. The reseult is shown in the followng table. We have tried vaious regression model and report the best two model here. By using Extra Trees Regressor and PCA component, we can achieve best MAE score 4.38, which shows PCA has the ability to efficiently capture corelated feature.
 
 Method | feature | MAE
 ------------ | ------------- | -------------
@@ -166,10 +171,12 @@ Best result proposed by paper | log transform | 7.52±0.25
 Random Forest Regressor | original data | 6.46
 Extra Trees Regressor | original data | 6.41
 Random Forest Regressor | log transform | 6.42
-Random Forest Regressor| log transform | 4.81
-Extra Trees Regressor | log transform | 4.38
+Random Forest Regressor | PCA | 4.81
+Extra Trees Regressor | PCA | 4.38
 
 * Training on TE & MSR combination
+
+We also try to train our regression model with the aggregated set. However, the result doesn't improve a lot. This might be caused by the varant across these two dataset. More experiment needs to be done in the future for validation.
 
 Method | MAE
 ------------ | -------------
