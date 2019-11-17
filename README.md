@@ -183,12 +183,6 @@ Method | MAE
 Random Forest Regressor | 8.56
 Extra Trees Regressor | 8.3
 
-#### Optimizing number of estimators/trees hyperparameter
-
- <img src="./visualizations/RFtreeestimators.png" width="300" height="200">
-
- <img src="./visualizations/RandomForestRegression_MSR.jpg">
-
 ## Applying our Models to Available Data
 One of the larger open datasets is the Mozilla Foundation's [Common Voice](voice.mozilla.org) dataset. It has 2454 hours of sound recordings spanning 29 languages. The data is published under C-0 license, which means all data is public domain.
 
