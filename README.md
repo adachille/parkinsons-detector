@@ -160,7 +160,7 @@ Poly | 79.8% | 96.4%
 
 Since we have UPDRS scores for the MSR training dataset and the TE dataset, we wanted to test if we could predict these scores with different regression models. We first explore the TE dataset for training our models and then use the TE and MSR training combined set. This time, the combined data set will be normalized (l2 norm) before using the supervised learning algorithms. For both setting, we only choose the patient with Parkinson disease as our training data. To evaluate our result, we inherit the evaluating method proposed by the original paper, which split 10% and 90% data from TE dataset for 10 fold cross-validation and report the Mean Absolute Error (MAE) at the testing subset.
 
-* Training on TE 
+* Training on TE
 
 We report the best result proposed by the original paper, which used Jitter(Abs), :Shimmer, NHR, HNR,
 DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model. In our experiment, we proposed to use Random Forest Regressor and Extra Trees Regressor as our models and leverage different feature processing methods for pre-processing our training data. We compare three methods 1) using original features 2) log transformation to the features and 3) PCA feature reduction. The reseult is shown in the followng table. We have tried vaious regression model and report the best two model here. By using Extra Trees Regressor and PCA component, we can achieve best MAE score 4.38, which shows PCA has the ability to efficiently capture corelated feature.
@@ -182,7 +182,7 @@ Method | MAE
 ------------ | -------------
 Random Forest Regressor | 8.56
 Extra Trees Regressor | 8.3
- 
+
 #### Optimizing number of estimators/trees hyperparameter
 
  <img src="./visualizations/RFtreeestimators.png" width="300" height="200">
@@ -192,19 +192,20 @@ Extra Trees Regressor | 8.3
 ## Applying our Models to Available Data
 One of the larger open datasets is the Mozilla Foundation's [Common Voice](voice.mozilla.org) dataset. It has 2454 hours of sound recordings spanning 29 languages. The data is published under C-0 license, which means all data is public domain.
 
-To reduce the data-points processed, the models were only tested on validated American-English recordings. Furthermore, since Parkinson's symptoms typically first manifest around the age of 50, all recordings from people ages 39 and younger were filtered out, to allow for some leeway. This left us with 46,000 sentence-long sound files.
+To reduce the data-points processed, the models were only tested on validated American-English recordings. Furthermore, since Parkinson's symptoms typically first manifest around the age of 50, all recordings from people ages 39 and younger were filtered out, to allow for some leeway. This left us with 46,813 sentence-long sound files.
 
 ### Dataset Composition
-Total Samples: Insert Total
+Total Samples: 46,813
 
 Age | Numbe of Samples
 ------------ | -------------
-40's | Insert Number
-50's  | Insert Number
-60's | Insert Number
-70's  |  Insert Number
-80's  |  Insert Number
-  
+40's | 21,824
+50's  | 10,700
+60's | 12,299
+70's  | 1,661
+80's  | 276
+90's  | 53
+
 ### Results
 * Classifier Predictions (MSR Train & TE):
 
