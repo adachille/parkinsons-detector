@@ -153,7 +153,23 @@ Poly | 79.8% | 96.4%
 
 ### Regression: UPDRS scores
 
-Since we have UPDRS scores for the MSR training dataset and the TE dataset, we wanted to test if we could predict these scores with random forest regression. Again, we will use the TE and MSR training combined set. This time, the data will be normalized (l2 norm) before using the supervised learning algorithms. For both set, we only choose the patient with Parkinson disease as our training data. To evaluate our result, we inherit the evaluating method proposed by the original paper, which split 10% data from TE dataset for cross-validation testing and report the Mean Absolute Error (MAE) at the testing subset.
+Since we have UPDRS scores for the MSR training dataset and the TE dataset, we wanted to test if we could predict these scores with different regression models. We first explore the TE dataset for training our models and then use the TE and MSR training combined set. This time, the combined data set will be normalized (l2 norm) before using the supervised learning algorithms. For both setting, we only choose the patient with Parkinson disease as our training data. To evaluate our result, we inherit the evaluating method proposed by the original paper, which split 10% and 90% data from TE dataset for 10 fold cross-validation and report the Mean Absolute Error (MAE) at the testing subset.
+
+* Training on TE 
+
+We report the best result proposed by the original paper, which used Jitter(Abs), :Shimmer, NHR, HNR,
+DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model. In our experiment, we proposed to use Random Forest Regressor and Extra Trees Regressor as our models and leverage different feature processing methods for pre-processing our training data. We compare three method 1)using original features 2)log transformation to the features and 3)PCA feature reduction. The reseult is shown in the followng table.
+
+Method | feature | MAE
+------------ | ------------- | -------------
+Best result proposed by paper | log transform | 7.52±0.25
+Random Forest Regressor | original data | 6.46
+Extra Trees Regressor | original data | 6.41
+Random Forest Regressor | log transform | 6.42
+Random Forest Regressor| log transform | 4.81
+Extra Trees Regressor | log transform | 4.38
+
+* Training on TE & MSR combination
 
 Method | MAE
 ------------ | -------------
