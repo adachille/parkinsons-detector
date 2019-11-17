@@ -143,12 +143,12 @@ Decision Tree | 61.3% | 80.4%
 Naïve Bayes | 84.5% | 86.9%
 Neural Network | 65.5% | 100%
 
-* Random Forest Classifier:
+* SVM Classifier:
 
 Kernel | MSR Train | MSR Train & TE
 ------------ | ------------- | -------------
 Linear | 51.7% | 100%
-RBF | 64.1% | 99.4%
+RBF | 54.1% | 99.4%
 Poly | 79.8% | 96.4%
 
 ### Regression: UPDRS scores
@@ -208,7 +208,7 @@ Decision Tree | Insert Percent%
 Naïve Bayes |  Insert Percent%
 Neural Network |  Insert Percent%
 
-* Random Forest Predictions by Kernel:
+* SVM Predictions by Kernel:
 
 Kernel | Prediction
 ------------ | -------------
