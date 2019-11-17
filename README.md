@@ -66,6 +66,7 @@ The data was gathered from 42 people with early-stage Parkinson's disease. There
 * PPE - A nonlinear measure of fundamental frequency variation
 
 ### Dataset Comparison
+
 Dataset | Features | Data Points
 ------------ | ------------- | -------------
 Disease Classification | 756 | 755
@@ -106,7 +107,9 @@ We can graph the covariance matrix of both datasets and see if they differ.
 Each dataset has many features, and from the covariance matrices we see that some features are highly correlated, so let's try doing some dimensionality reduction using PCA and LDA.
 
 Let's begin by using PCA on the datasets and seeing how many components we need to recover 99% of the variance.
+
 #### Principal Component Analysis
+
 Dataset | # of Features | Reduced # of Components
 ------------ | ------------- | -------------
 Disease Classification | 755 | 270
@@ -117,7 +120,7 @@ Telemonitoring | 22 | 11
 We can see a great reduction in the number of components describing 99% of the variance in these datasets.
 
 Now, let's visualize the first two components of the TE and MSR train dataset. We've colored datapoints by the UPDRS score, a measure of PD severity. 
-<img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/PCA_LDA_TE_MSRtrain.jpg">
+<img src="./visualizations/PCA_LDA_TE_MSRtrain.jpg">
 
 ## Supervised Learning & Prediciton of PD
 ### Datasets
@@ -150,9 +153,9 @@ Poly | 79.8% | 96.4%
 Since we have UPDRS scores for the MSR training dataset and the TE dataset, we wanted to test if we could predict these scores with random forest regression. Again, we will use the TE and MSR training combined set. This time, the data will be normalized (l2 norm) before using the supervised learning algorithms.
  
  #### Optimizing number of estimators/trees hyperparameter
- <img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/RFtreeestimators.png" width="300" height="200">
+ <img src="./visualizations/RFtreeestimators.png" width="300" height="200">
 
- <img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/RandomForestRegression_MSR.jpg">
+ <img src="./visualizations/RandomForestRegression_MSR.jpg">
 
 ## References
 [1] Rascol, O.,Payoux, P.,Ory, F.,Ferreira, J. J., Brefel-Courbon, C. and Montastruc, J. (2003), Limitations of current Parkinson's disease therapy. Ann Neurol., 53: S3-S15.
