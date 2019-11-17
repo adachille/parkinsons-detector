@@ -14,18 +14,18 @@ The aim of this project is to predict Parkinson's presence, and disease severity
 
 UPDRS scores range from 0 to 199, with 199 representing the greatest disease severity, or total disability [4].
 
-### [Disease Classification (DC) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson%27s+Disease+Classification#)
+### [Disease Classification (DC) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson%27s+Disease+Classification#) [5]
 The data used in this study were gathered from 188 patients with Parkinsons and 64 healthy individuals. Researchers recorded the participants sustaining the phonation of the vowel /a/ for three repetitions.
 
 Speech signal processing algorithms including Time Frequency Features, Mel Frequency Cepstral Coefficients (MFCCs), Wavelet Transform based Features, Vocal Fold Features and TWQT features were also applied to the speech recordings to extract clinically useful information for PD assessment.
 
-### [Multiple Sound Recording (MSR) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson+Speech+Dataset+with++Multiple+Types+of+Sound+Recordings)
+### [Multiple Sound Recording (MSR) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson+Speech+Dataset+with++Multiple+Types+of+Sound+Recordings) [6]
 The training data were gathered from 20 patients with Parkinsons and 20 health individuals. Multiple types of sound recordings were taken from each participant (listed below) and expert physicians assigned each participant a Unified Parkinson's Disease Rating Scale (UPDRS) score.
 
 **Utterances**
-* 1: sustained vowel (aaaâ€¦â€¦)
-* 2: sustained vowel (oooâ€¦...)
-* 3: sustained vowel (uuuâ€¦...)
+* 1: sustained vowel (“a”)
+* 2: sustained vowel (“o”)
+* 3: sustained vowel (“u”)
 * 4-13: numbers from 1 to 10
 * 14-17: short sentences
 * 18-26: words
@@ -45,10 +45,10 @@ The training data were gathered from 20 patients with Parkinsons and 20 health i
 The testing data were gathered from 28 different patients with Parkinsons. The patients are asked to say only the sustained vowels 'a' and 'o' three times each, producing 168 recordings. The same 26 features are extracted from the voice samples.
 
 **Utterances**
-* 1-3: sustained vowel (aaaâ€¦â€¦)
-* 4-6: sustained vowel (oooâ€¦â€¦)
+* 1-3: sustained vowel (“a”)
+* 4-6: sustained vowel (“o”)
 
-### [Telemonitoring (TE) Dataset](http://archive.ics.uci.edu/ml/datasets/Parkinsons+Telemonitoring)
+### [Telemonitoring (TE) Dataset](http://archive.ics.uci.edu/ml/datasets/Parkinsons+Telemonitoring) [7]
 The data was gathered from 42 people with early-stage Parkinson's disease. There are 16 voice measures, and two regression measurements: motor UPDRS and total UPDRS. Each row of the dataset contain corresponds to one voice recording. There are around 200 recordings per patient, the subject number of the patient is identified in the first column.
 
 **Features**
@@ -65,6 +65,7 @@ The data was gathered from 42 people with early-stage Parkinson's disease. There
 * DFA - Signal fractal scaling exponent
 * PPE - A nonlinear measure of fundamental frequency variation
 
+### Dataset Comparison
 Dataset | Features | Data Points
 ------------ | ------------- | -------------
 Disease Classification | 756 | 755
@@ -79,7 +80,7 @@ We also note that the DC and MSR datasets have a similar number of instances, wh
 ### Response data: UPDRS 
 Distributions of UPDRS scores:
 
-<img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/UPDRS_TE_MSR.jpg">
+<img src="./visualizations/UPDRS_TE_MSR.jpg">
 
 ## Intial Data Exploration & Unsupervised Learning
 
@@ -88,7 +89,7 @@ Distributions of UPDRS scores:
 First we will begin by creating visualizations for the correlation matrix of each dataset. We will be using a special heatmap that encodes correlation using not only color, but size. The code for this visualization is taken from this [tutorial](https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec).
 
 #### Telemonitoring
-<img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/Telemonitoring-correlation-matrix.jpg" width="500" height="500">
+<img src="./visualizations/Telemonitoring-correlation-matrix.jpg" width="500" height="500">
 
 #### Multiple Sound Recording 
 These datasets have two separate train and test datasets. The data are drawn from very different distributions of people: the training dataset comes from a mix of people with and without Parkinson's, and the testing dataset is entirely composed of data collected from people with Parkinson's.
@@ -96,10 +97,10 @@ We can graph the covariance matrix of both datasets and see if they differ.
 
 ##### Training Data Set
 
-<img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/multiple-sound-recoring-train-correlation-matrix.jpg" width="500" height="500">
+<img src="./visualizations/multiple-sound-recoring-train-correlation-matrix.jpg" width="500" height="500">
 
 ###### Testing Data Set
-<img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/multiple-sound-recoring-test-correlation-matrix.jpg" width="500" height="500">
+<img src="./visualizations/multiple-sound-recoring-test-correlation-matrix.jpg" width="500" height="500">
 
 ### Dimension Reduction: 
 Each dataset has many features, and from the covariance matrices we see that some features are highly correlated, so let's try doing some dimensionality reduction using PCA and LDA.
@@ -154,7 +155,10 @@ Since we have UPDRS scores for the MSR training dataset and the TE dataset, we w
  <img src="https://github.com/adachille/parkinsons-detector/blob/master/visualizations/RandomForestRegression_MSR.jpg">
 
 ## References
-1. Rascol, O.,Payoux, P.,Ory, F.,Ferreira, J. J., Brefel-Courbon, C. and Montastruc, J. (2003), Limitations of current Parkinson's disease therapy. Ann Neurol., 53: S3-S15.
-2. Pagan, F. L., (2012). Improving outcomes through early diagnosis of Parkinson’s disease. The American Journal of Managed Care, 18, 176-182. 
-3. Vaiciukynas, E., Verikas, A., Gelzinis, A., & Bacauskiene, M. (2017). Detecting Parkinson's disease from sustained phonation and speech signals. PloS one, 12(10), e0185613. doi:10.1371/journal.pone.0185613
-4. UPDRS SCALE [Internet]. Theracycle. PD Resources; [cited 2019Nov16]. Available from: https://www.theracycle.com/pd-resources/links-and-additional-resources/updrs-scale/
+[1] Rascol, O.,Payoux, P.,Ory, F.,Ferreira, J. J., Brefel-Courbon, C. and Montastruc, J. (2003), Limitations of current Parkinson's disease therapy. Ann Neurol., 53: S3-S15.
+[2] Pagan, F. L., (2012). Improving outcomes through early diagnosis of Parkinson’s disease. The American Journal of Managed Care, 18, 176-182. 
+[3] Vaiciukynas, E., Verikas, A., Gelzinis, A., & Bacauskiene, M. (2017). Detecting Parkinson's disease from sustained phonation and speech signals. PloS one, 12(10), e0185613. doi:10.1371/journal.pone.0185613
+[4] UPDRS SCALE [Internet]. Theracycle. PD Resources; [cited 2019Nov16]. Available from: https://www.theracycle.com/pd-resources/links-and-additional-resources/updrs-scale/
+[5] Sakar, C. O., Serbes, G., Gunduz, A., Tunc, H. C., Nizam, H., Sakar, B. E., ... & Apaydin, H. (2019). A comparative analysis of speech signal processing algorithms for Parkinson’s disease classification and the use of the tunable Q-factor wavelet transform. Applied Soft Computing, 74, 255-263.
+[6] Erdogdu Sakar, B., Isenkul, M., Sakar, C.O., Sertbas, A., Gurgen, F., Delil, S., Apaydin, H., Kursun, O., 'Collection and Analysis of a Parkinson Speech Dataset with Multiple Types of Sound Recordings', IEEE Journal of Biomedical and Health Informatics, vol. 17(4), pp. 828-834, 2013.
+[7] Tsanas, A., Little, M. A., McSharry, P. E., & Ramig, L. O. (2009). Accurate telemonitoring of Parkinson's disease progression by noninvasive speech tests. IEEE transactions on Biomedical Engineering, 57(4), 884-893.
