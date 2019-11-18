@@ -178,12 +178,41 @@ Extra Trees Regressor | PCA | 4.38
 
 We also try to train our regression model with the aggregated set. 
 
-Method | MAE
+Method | Features | MAE
 ------------ | -------------
-Random Forest Regressor | 8.56
-Extra Trees Regressor | 8.3
+Random Forest Regressor | original data | 8.56
+Extra Trees Regressor | original data | 8.3
+Random Forest Regressor | PCA | 8.08
+Extra Trees Regressor | PCA | 8.16
 
 While the accuracies of the models trained on the joint dataset are worse, this is almost certainly due to the inherent differences in the two datasets. The TE dataset has over 100s of samples from each individual over time, while the MSR dataset has significantly less. Furthermore, the MSR dataset has participants say a preselected set of phrases, while the TE dataset is a collection of varying and unscripted phrases from participants. It is possible that this mix of data leads to a more generalized, better model, but more experiment needs to be done to determine this.
+
+#### Neural Network Regression
+
+We also decided to try building some neural network models to test their efficacy. Due to the relatively low feature space and number of data points, we assumed they may be less effective than some other classical methods, but they ended up being just as effective if tuned properly. 
+
+We initially assumed that the neural network should be a single hidden layer deep, to handle a lack of linear seperability but to also prevent overfitting. We tried many different hidden layer sizes, with the joint dataset and PCA preprocessing. The results are shown below:
+
+Hidden Layer Size  | MAE
+------------ | -------------
+10 | 8.71
+20 | 8.64
+50 | 8.66
+100 | 8.43
+200 | 8.34
+500 | 8.36
+1000 | 8.36
+
+Since none of these networks beat our prior results, we decided to try neural networks with two hidden layers. The results were very impressive!
+
+Hidden Layer 1 Size | Hidden Layer 2 Size | MAE
+------------ | -------------
+100 | 50 | 8.36
+200 | 100 | 8.31
+500 | 200 | 8.22
+1000 | 500 | 8.07
+
+With more time, we would like to do some exploration on why neural networks with two layers and many nodes work better on the aggregate dataset. 
 
 ## Applying our Models to Available Data
 One of the larger open datasets is the Mozilla Foundation's [Common Voice](voice.mozilla.org) dataset. It has 2454 hours of sound recordings spanning 29 languages. The data is published under C-0 license, which means all data is public domain.
