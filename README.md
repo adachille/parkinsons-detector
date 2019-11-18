@@ -80,7 +80,7 @@ We observed that the TE dataset has over 5 times as many data points as the MSR 
 Although TE and MSR have different UPDRS score distributions, their score range is similar. As a result, we decided to try merging these two datasets together by their common features to build another, larger training dataset.
 Distributions of UPDRS scores:
 
-<img src="./visualizations/UPDRS_TE_MSR.jpg">
+<img src="./visualizations/UPDRSscoredis.jpg">
 
 ## Intial Data Exploration & Unsupervised Learning
 
@@ -263,7 +263,7 @@ Poly | 24.8% | 94.3%
 
 ### Discussion
 It is clear that there is over-prediction when it comes to the real world data, especially in the case of MSR + TE. But, the MSR + TE results can be explained by two factors:
-1. The datasets had a limited overlap in features, meaning that the featureset used was not as rich as was possible from using either individually.
+1. The datasets had a limited overlap in features, meaning that some features from each dataset had to be excluded, resulting in a loss of potentially useful information.
 2. The TE dataset is composed entirely of people with early stage Parkinson's. This means that the data available was imbalanced, leading to overfitting even if cross-validation methods are used.
 
 Without this imbalance, examining the MSR data-set alone provided much more realistic results. The best performing methods were Random Forest Classifier, Naïve Bayes, and the RBF SVM. All of these tell us that any separation requires an accounting for the non-linear relationship between the parameters.
