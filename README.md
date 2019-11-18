@@ -296,8 +296,12 @@ It is clear that there is over-prediction when it comes to the real world data, 
 1. MSR Train & TE had a very limited overlap in features
 2. MSR was 
 
-### Limitations
+### Conclusion & Limitations
 What limitations did we have?
+In this project, we leverage several unsupervised (PCA, LDA, etc.) and supervised (SVM, Naïve Bayes, etc) techniques for predicting Parkinson disease based on speech analysis data. Our methods not only achieve high accuracy on predicting Parkinson's presence, but also gain a significant improvement on predicting UPDRS score. 
+
+However, the biggest limitation of our methods is the robustness. Since all of our models are based on two dataset (TE and MSR), when the testing data is gathered from different environment setting, such as longer samples, various pitch range or other data variance, then our models' performance will be easily influenced by these factors. 
+
 
 ### Future Work
 This project leaves open several avenues for further research. Some of those are listed below:
