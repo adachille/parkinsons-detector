@@ -179,7 +179,7 @@ Extra Trees Regressor | PCA | 4.38
 We also try to train our regression model with the aggregated set. 
 
 Method | Features | MAE
------------- | -------------
+------------ | ------------- | -------------
 Random Forest Regressor | original data | 8.56
 Extra Trees Regressor | original data | 8.3
 Random Forest Regressor | PCA | 8.08
@@ -193,7 +193,7 @@ We also decided to try building some neural network models to test their efficac
 
 We initially assumed that the neural network should be a single hidden layer deep, to handle a lack of linear seperability but to also prevent overfitting. We tried many different hidden layer sizes, with the joint dataset and PCA preprocessing. The results are shown below:
 
-Hidden Layer Size  | MAE
+Hidden Layer Size | MAE
 ------------ | -------------
 10 | 8.71
 20 | 8.64
@@ -206,7 +206,7 @@ Hidden Layer Size  | MAE
 Since none of these networks beat our prior results, we decided to try neural networks with two hidden layers. The results were very impressive!
 
 Hidden Layer 1 Size | Hidden Layer 2 Size | MAE
------------- | -------------
+------------ | ------------- | -------------
 100 | 50 | 8.36
 200 | 100 | 8.31
 500 | 200 | 8.22
