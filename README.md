@@ -120,6 +120,8 @@ We can see a great reduction in the number of components describing 99% of the v
 Now, let's visualize the first two components of the TE and MSR train dataset. We've colored datapoints by the UPDRS score, a measure of PD severity.
 <img src="./visualizations/PCA_LDA_TE_MSRtrain.jpg">
 
+Patients of varying disease severity were not separated in both LDA and PCA plots. This is likely due to Considering, >11 components are needed to explain 99% of the variance, 
+
 ## Supervised Learning & Prediciton of PD
 ### Datasets
 For this section, we explored the prediction of PD in the MSR testing set from 1) the MSR training set and 2) an aggregated TE and MSR training data set.
@@ -130,7 +132,7 @@ For the latter, we found 13 overlapping features: Jitter, Jitter(Abs), Jitter:RA
 
 At this point, we used the MSR training set and the aggregated MSR/TE set to train binary classification models and tested them on the MSR testing set. In the testing set, all of the samples have PD. Our goal is to identify the accuracy of PD diagnoses among these patients. Or, in other words, see how many of the 28 patients' recorings our model can successfully diagnose with PD.
 
-We also compare performances accross different algorithms. As shown in the following table, Naive Bayes can achieve the best result when using the MSR training set. Moreover, after combining both sets, our accuracy improved for each classifier. However, there is also a concern here that samples with and without disease are very imbalanced in the combined set. Adding in the TE set with all PD patients, may skew our models to predict PD, the only class of datapoint in the testing set more frequently. The improvement might be caused by overfitting. Moreover, from these experiments, we do not know how our model will perform for datasets of non-PD patients, a significant limitation.
+We also compare performances accross different algorithms. As shown in the following table, Naive Bayes can achieve the best result when using the MSR training set. Also, after combining both sets, our accuracy improved for each classifier. However, there is also a concern here that samples with and without disease are very imbalanced in the combined set. Adding in the TE set with all PD patients, may skew our models to predict PD, the only class of datapoint in the testing set, more frequently. The improvement might be caused by overfitting. Moreover, from these experiments, we do not know how our model will perform for datasets of non-PD patients, a significant limitation.
 
 #### Accuracy of each classifier:
 
@@ -150,7 +152,7 @@ Linear | 51.7% | 100%
 Poly | 79.8% | 96.4%
 RBF | 54.1% | 99.4%
 
-Here, we see that the polynomial kernel is the most accurate for the MSR training data, and that each kernel in the MSR/TE combined dataset has high accuracy. 
+Here, we see that the polynomial kernel is the most accurate for the MSR training data and is comparable to the accuracy of the Naïve Bayes classifier. We also see that each kernel in the MSR/TE combined dataset has high accuracy. Again, the high accuracy in the MSR/TE combined set may be due to the problems mentioned above.
 
 ### Regression: UPDRS scores
 
@@ -159,7 +161,8 @@ Since we have UPDRS scores for the MSR training dataset and the TE dataset, we w
 #### Training on TE
 
 We report the best result proposed by the original paper, which used Jitter(Abs), :Shimmer, NHR, HNR,
-DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model. In our experiment, we leveraged different feature processing methods for pre-processing our training data. We compare three methods 1) using original features 2) log transformation of the features and 3) PCA feature reduction. The results are shown in the followng table. We also tried various regression models and report the best two models (Random Forest Regressor and Extra Trees Regressor) here. By using Extra Trees Regressor and PCA dimension reduction, we can achieve an MAE score 4.38, which shows PCA has the ability to effectively improve the accuracy of these regressors and capture feature correlation.
+DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model. 
+In our experiment, we leveraged different feature processing methods for pre-processing our training data. We compare three methods 1) using original features 2) log transformation of the features and 3) PCA feature reduction. The results are shown in the followng table. We also tried various regression models and report the best two models (Random Forest Regressor and Extra Trees Regressor) here. By using Extra Trees Regressor and PCA dimension reduction, we can achieve an MAE score 4.38, which shows PCA has the ability to effectively improve the accuracy of these regressors and capture feature correlation.
 
 Method | feature | MAE
 ------------ | ------------- | -------------
@@ -185,7 +188,7 @@ While the accuracies of the models trained on the joint dataset are worse, this 
 
 #### Neural Network Regression
 
-We also decided to try building some neural network models to test their efficacy. Due to the relatively low feature space and number of data points, we assumed they may be less effective than some other classical methods, but they ended up being just as effective if tuned properly. 
+We also decided to try building some neural network models to test their efficacy. Due to the relatively low feature space and number of data points, we assumed they may be less effective than some other classical methods, but they ended up being just as effective, if tuned properly. 
 
 We initially assumed that the neural network should be a single hidden layer deep, to handle a lack of linear seperability but to also prevent overfitting. We tried many different hidden layer sizes, with the joint dataset and PCA preprocessing. The results are shown below:
 
@@ -217,7 +220,7 @@ Hidden Layer 1 Size | Hidden Layer 2 Size | MAE
 500 | 200 | 3.24
 1000 | 500 | 3.14
 
-With more time, we would like to do some exploration on why neural networks with two layers and many nodes work better on these datasets. 
+In the future, we would like to do some exploration on why neural networks with two layers and many nodes work better on these datasets. 
 
 ## Applying our Models to Available Data
 One of the larger open datasets is the Mozilla Foundation's [Common Voice](voice.mozilla.org) dataset. It has 2454 hours of sound recordings spanning 29 languages. The data is published under C-0 license, which means all data is public domain.
