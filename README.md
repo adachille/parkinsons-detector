@@ -111,7 +111,6 @@ Let's begin by using PCA on the datasets and seeing how many components we need 
 
 Dataset | # of Features | Reduced # of Components
 ------------ | ------------- | -------------
-Disease Classification | 755 | 270
 Multiple Sound Recoring Training | 29 | 17
 Multiple Sound Recoring Testing | 28 | 12
 Telemonitoring | 22 | 11
@@ -129,7 +128,9 @@ For the latter, we found 13 overlapping features: Jitter, Jitter(Abs), Jitter:RA
 
 ### Classification: PD and non-PD patients
 
-At this point, we used the MSR training set and the aggregated set to train binary classification models and tested them on the MSR testing set. In the testing set, all of the samples have PD. Our goal is to identify the accuracy of diagnose PD disease among these patients. We also compare performance on different algorithm. As shown in the following table, Naive Bayes can achieve the best result when using MSR training set. Moreover, after combining both sets, our accuracy improved for each classifier. However, there is also a concern here that samples with and without disease are very imbalanced in the combined set. The improvement might be caused by overfitting.
+At this point, we used the MSR training set and the aggregated MSR/TE set to train binary classification models and tested them on the MSR testing set. In the testing set, all of the samples have PD. Our goal is to identify the accuracy of PD diagnoses among these patients. Or, in other words, see how many of the 28 patients' recorings our model can successfully diagnose with PD.
+
+We also compare performances accross different algorithms. As shown in the following table, Naive Bayes can achieve the best result when using the MSR training set. Moreover, after combining both sets, our accuracy improved for each classifier. However, there is also a concern here that samples with and without disease are very imbalanced in the combined set. Adding in the TE set with all PD patients, may skew our models to predict PD, the only class of datapoint in the testing set more frequently. The improvement might be caused by overfitting. Moreover, from these experiments, we do not know how our model will perform for datasets of non-PD patients, a significant limitation.
 
 #### Accuracy of each classifier:
 
@@ -141,12 +142,15 @@ Naïve Bayes | 84.5% | 86.9%
 Neural Network | 65.5% | 100%
 
 #### SVM Classifier:
+We investigated the use of several kernels of increasing complexity: a basic linear kernel, assuming our data are linear separable; a polynomial (poly) kernel, assuming our data are nonlinear; and a more complex radial basis kernel (RBF), with a feature space of infinite dimension.
 
 Kernel | MSR Train | MSR Train & TE
 ------------ | ------------- | -------------
 Linear | 51.7% | 100%
-RBF | 54.1% | 99.4%
 Poly | 79.8% | 96.4%
+RBF | 54.1% | 99.4%
+
+Here, we see that the polynomial kernel is the most accurate for the MSR training data, and that each kernel in the MSR/TE combined dataset has high accuracy. 
 
 ### Regression: UPDRS scores
 
