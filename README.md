@@ -241,41 +241,23 @@ Age | Number of Samples
 80's  | 276
 90's  | 53
 
-### Results (MSR Train & TE)
+### Results
 #### Classifier Predictions:
 
-Classifier | Prediction
------------- | -------------
-Random Forest Classifier | 100%
-Decision Tree | 61.1%
-Naïve Bayes |  49.1%
-Neural Network |  100%
+Classifier | MSR Train | MSR Train & TE
+------------ | ------------- | -----
+Random Forest Classifier | 7.7% | 100%
+Decision Tree | 48.5% | 61.1%
+Naïve Bayes |  16.5% | 49.1%
+Neural Network |  16.8% | 100%
 
 #### SVM Predictions by Kernel:
 
-Kernel | Prediction
------------- | -------------
-Linear | 99%
-RBF  | 73.8%
-Poly | 94.3%
-
-### Results (MSR)
-#### Classifier Predictions:
-
-Classifier | Prediction
------------- | -------------
-Random Forest Classifier | 7.7%
-Decision Tree | 48.5%
-Naïve Bayes |  16.5%
-Neural Network |  16.8%
-
-#### SVM Predictions by Kernel:
-
-Kernel | Prediction
------------- | -------------
-Linear |  48.1%
-RBF  | 13.1%
-Poly | 24.8%
+Kernel | MSR Train | MSR Train & TE
+------------ | -------------| -----
+Linear |  48.1% | 99%
+RBF  | 13.1% | 73.8%
+Poly | 24.8% | 94.3%
 
 
 ### Discussion
