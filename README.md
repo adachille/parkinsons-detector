@@ -288,7 +288,7 @@ This project leaves open several avenues for further research. Some of those are
 ### Significance
 An estimated 10 million people worldwide have PD. Since there is no effective cure for PD, early detection is the primary goal. However, PD is difficult to diagnose because symptoms often manifest in the late stages of the disesase. Therefore, there is a great need for early detection and monitoring methods, like speech analysis.
 
-In this project, we classified and predicted PD severity on the UPDRS. Our goal was to achieve accuracy that is comparable to average clinical diagnosis accuracy. A meta-analysis from 2016 of 20 studies showed that diagnostic accuracy was around 80%. While we acknowledge the limitations mentioned above, we were able to reach this threshold with the TE/MSR datasets. 
+In this project, we classified and predicted PD severity on the UPDRS. Our goal was to achieve accuracy that is comparable to average clinical diagnosis accuracy. A meta-analysis from 2016 of 20 studies showed that diagnostic accuracy was around 80% [7]. While we acknowledge the limitations mentioned above, we were able to reach this threshold with the TE/MSR datasets. 
 
 Overall, speech detection of PD can be a powerful tool in early detection and monitoring of disease severity. We believe more effort should be invested in this field.
 
@@ -316,3 +316,5 @@ Yiting Zhang - Classification, Regression
 [5] Erdogdu Sakar, B., Isenkul, M., Sakar, C.O., Sertbas, A., Gurgen, F., Delil, S., Apaydin, H., Kursun, O., 'Collection and Analysis of a Parkinson Speech Dataset with Multiple Types of Sound Recordings', IEEE Journal of Biomedical and Health Informatics, vol. 17(4), pp. 828-834, 2013.
 
 [6] Tsanas, A., Little, M. A., McSharry, P. E., & Ramig, L. O. (2009). Accurate telemonitoring of Parkinson's disease progression by noninvasive speech tests. IEEE transactions on Biomedical Engineering, 57(4), 884-893.
+
+[7] Rizzo G et al. Accuracy of clinical diagnosis of Parkinson disease: A systematic review and meta-analysis. Neurology 2016 Jan 13; [e-pub]. (http://dx.doi.org/10.1212/WNL.0000000000002350)
