@@ -74,10 +74,10 @@ Multiple Sound Recoring Training | 1040 | 29
 Multiple Sound Recoring Testing | 168 | 28
 Telemonitoring | 5875 | 22
 
-We note that the TE dataset has over 5 times as many data points as the MSR data sets. In our experiment, we use MSR and TE for training both classification and regression models.
+We observed that the TE dataset has over 5 times as many data points as the MSR data sets. In our experiment, we use MSR and TE for training both classification and regression models.
 
 ### Response data: UPDRS
-Although TE and MSR have different UPDRS score distributions, their score range is similar. As a result, we merge these two datasets together by their common features to build another, larger training dataset.
+Although TE and MSR have different UPDRS score distributions, their score range is similar. As a result, we decided to try merging these two datasets together by their common features to build another, larger training dataset.
 Distributions of UPDRS scores:
 
 <img src="./visualizations/UPDRS_TE_MSR.jpg">
@@ -86,14 +86,13 @@ Distributions of UPDRS scores:
 
 ### Covariance Matrices
 
-First we will begin by creating visualizations for the correlation matrix of each dataset. We will be using a special heatmap that encodes correlation using not only color, but size. The code for this visualization is taken from this [tutorial](https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec).
+First began by creating visualizations for the correlation matrix of each dataset. We used a special heatmap that encodes correlation using not only color, but size. The code for this visualization was taken from this [tutorial](https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec).
 
 #### Telemonitoring
 <img src="./visualizations/Telemonitoring-correlation-matrix.jpg" width="700" height="700">
 
 #### Multiple Sound Recording
-These datasets have two separate train and test datasets. The data are drawn from very different distributions of people: the training dataset comes from a mix of people with and without Parkinson's, and the testing dataset is entirely composed of data collected from people with Parkinson's.
-We can graph the covariance matrix of both datasets and see if they differ.
+These datasets have two separate train and test datasets. The data are drawn from very different distributions of people: the training dataset comes from a mix of people with and without Parkinson's, and the testing dataset is entirely composed of data collected from people with Parkinson's. We graphed the covariance matrix of both below.
 
 ##### Training Data Set
 
@@ -103,9 +102,9 @@ We can graph the covariance matrix of both datasets and see if they differ.
 <img src="./visualizations/multiple-sound-recoring-test-correlation-matrix.jpg" width="700" height="700">
 
 ### Dimension Reduction:
-Each dataset has many features, and from the covariance matrices we see that some features are highly correlated, so let's try doing some dimensionality reduction using principal component analysis (PCA) and linear discriminant analysis (LDA).
+Each dataset has many features, and from the covariance matrices we see that some features are highly correlated, so we tried some dimensionality reduction using principal component analysis (PCA) and linear discriminant analysis (LDA).
 
-Let's begin by using PCA on the datasets and seeing how many components we need to recover 99% of the variance.
+Below are results we obtained by using PCA on the datasets and seeing how many components we need to recover 99% of the variance.
 
 #### Principal Component Analysis
 
@@ -117,12 +116,12 @@ Telemonitoring | 22 | 11
 
 <img src="./visualizations/PCAVariance.png" width="400" height="250">
 
-We can see a great reduction in the number of components describing 99% of the variance in these datasets.
+We successfully reduced the number of components to about half, while still recovering 99% of the variance in these datasets.
 
-Now, let's visualize the first two components of the TE and MSR train dataset. We've colored datapoints by the UPDRS score, a measure of PD severity. For LDA, UPDRS scores are rounded, binned, and used for classes.
+We also created visualizations for the first two components of the TE and MSR train dataset. We colored datapoints by the UPDRS score, a measure of PD severity. For LDA, UPDRS scores were rounded, binned, and used for classes.
 <img src="./visualizations/PCA_LDA_TE_MSRtrain.jpg">
 
-Patients of varying disease severity were not separated in PCA plots. We see some separation of patient recordings with the highest and lowest UPDRS scores in the TE dataset accross component 2 on the y-axis.
+Patients of varying disease severity were not separated in PCA plots. We saw some separation of patient recordings with the highest and lowest UPDRS scores in the TE dataset accross component 2 on the y-axis.
 
 ## Supervised Learning & Prediciton of PD
 ### Datasets
@@ -164,7 +163,7 @@ Since we have UPDRS scores for the MSR training dataset and the TE dataset, we w
 
 We report the best result proposed by the original paper, which used Jitter(Abs), :Shimmer, NHR, HNR,
 DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model.
-In our experiment, we leveraged different feature processing methods for pre-processing our training data. We compare three methods 1) using original features 2) log transformation of the features and 3) PCA feature reduction. The results are shown in the followng table. We also tried various regression models and report the best two models (Random Forest Regressor and Extra Trees Regressor) here. By using Extra Trees Regressor and PCA dimension reduction, we can achieve an MAE score 4.38, which shows PCA has the ability to effectively improve the accuracy of these regressors and capture feature correlation.
+In our experiment, we leveraged different feature processing methods for pre-processing our training data. We compare three methods 1) using original features 2) log transformation of the features and 3) PCA feature reduction. The results are shown in the following table. We also tried various regression models and report the best two models (Random Forest Regressor and Extra Trees Regressor) here. By using Extra Trees Regressor and PCA dimension reduction, we can achieve an MAE score 4.38, which shows PCA has the ability to effectively improve the accuracy of these regressors and capture feature correlation.
 
 Method | feature | MAE
 ------------ | ------------- | -------------
@@ -213,7 +212,7 @@ Hidden Layer 1 Size | Hidden Layer 2 Size | MAE
 500 | 200 | 8.22
 1000 | 500 | 8.07
 
-Running the two-layer networks on the TE dataset, we get even more impressive results:
+Running the two-layer networks on the TE dataset, we got even more impressive results:
 
 Hidden Layer 1 Size | Hidden Layer 2 Size | MAE
 ------------ | ------------- | -------------
@@ -222,7 +221,7 @@ Hidden Layer 1 Size | Hidden Layer 2 Size | MAE
 500 | 200 | 3.24
 1000 | 500 | 3.14
 
-In the future, we would like to do some exploration on why neural networks with two layers and many nodes work better on these datasets.
+In the future, it would be interesting to do explore why neural networks with two layers and many nodes result in lower error on these datasets.
 
 ## Applying our Models to Available Data
 One of the larger open datasets is the Mozilla Foundation's [Common Voice](voice.mozilla.org) dataset. It has 2454 hours of sound recordings spanning 29 languages. The data is published under C-0 license, which means all data is public domain.
@@ -263,7 +262,6 @@ Poly | 24.8% | 94.3%
 
 
 ### Discussion
-What does this tell us about our models?
 It is clear that there is over-prediction when it comes to the real world data, especially in the case of MSR + TE. But, the MSR + TE results can be explained by two factors:
 1. The datasets had a limited overlap in features, meaning that the featureset used was not as rich as was possible from using either individually.
 2. The TE dataset is composed entirely of people with early stage Parkinson's. This means that the data available was imbalanced, leading to overfitting even if cross-validation methods are used.
@@ -288,7 +286,7 @@ This project leaves open several avenues for further research. Some of those are
 ### Significance
 An estimated 10 million people worldwide have PD. Since there is no effective cure for PD, early detection is the primary goal. However, PD is difficult to diagnose because symptoms often manifest in the late stages of the disesase. Therefore, there is a great need for early detection and monitoring methods, like speech analysis.
 
-In this project, we classified and predicted PD severity on the UPDRS. Our goal was to achieve accuracy that is comparable to average clinical diagnosis accuracy. A meta-analysis from 2016 of 20 studies showed that diagnostic accuracy was around 80% [7]. While we acknowledge the limitations mentioned above, we were able to reach this threshold with the TE/MSR datasets. 
+In this project, we classified and predicted PD severity on the UPDRS. Our goal was to achieve accuracy that is comparable to average clinical diagnosis accuracy. A meta-analysis from 2016 of 20 studies showed that diagnostic accuracy was around 80% [7]. While we acknowledge the limitations mentioned above, we were able to reach this threshold with the TE/MSR datasets.
 
 Overall, speech detection of PD can be a powerful tool in early detection and monitoring of disease severity. We believe more effort should be invested in this field.
 
