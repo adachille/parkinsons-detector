@@ -241,18 +241,6 @@ Age | Number of Samples
 80's  | 276
 90's  | 53
 
-### Dataset Composition
-Total Samples: 46,813
-
-Age | Number of Samples
------------- | -------------
-40's | 21,824
-50's  | 10,700
-60's | 12,299
-70's  | 1,661
-80's  | 276
-90's  | 53
-
 ### Results (MSR Train & TE)
 #### Classifier Predictions:
 
@@ -292,9 +280,13 @@ Poly | 24.8%
 
 ### Discussion
 What does this tell us about our models?
-It is clear that there is over-prediction when it comes to the real world data, but this can be explained by two factors:
-1. MSR Train & TE had a very limited overlap in features
-2. MSR was 
+It is clear that there is over-prediction when it comes to the real world data, especially in the case of MSR + TE.
+
+The MSR + TE results can be explained by two factors:
+1. MSR Train & TE had a very limited overlap in features, meaning that the featureset used was not as rich as was possible using either individually.
+2. The TE dataset is composed entirely of people with early stage Parkinson's. This means that the data available was imbalanced, leading to overfitting even if cross-validation methods are used.
+
+Without this imbalance, examining the MSR data-set alone provided much more realistic results. The best performing methods were Random Forest Classifier, Naïve Bayes, and the RBF SVM. All of these tell us that any separation requires account for the non-linear relationship between the parameters.
 
 ### Conclusion & Limitations
 What limitations did we have?
