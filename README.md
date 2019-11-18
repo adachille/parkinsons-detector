@@ -242,6 +242,17 @@ Age | Number of Samples
 90's  | 53
 
 ### Results
+
+#### Classifier Predictions (MSR Train):
+
+Classifier | Prediction
+------------ | -------------
+Random Forest Classifier | 50.4%
+Decision Tree | 54.7%
+Naïve Bayes |  44.7%
+Neural Network |  54.7%
+SVM | 32.8%
+
 #### Classifier Predictions (MSR Train & TE):
 
 Classifier | Prediction
