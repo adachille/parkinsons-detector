@@ -271,7 +271,6 @@ Without this imbalance, examining the MSR data-set alone provided much more real
 What we can draw from this analysis is that that overlapping set of features, which are Jitter, Shimmer and Harmonicity are not sufficient to detect parkinsons. But, while information on voice breaks, pitch, and autocorrelation do provide additional predictive power, that too is not entirely sufficient for building a model for Parkinson's classification.
 
 ### Conclusion & Limitations
-What limitations did we have?
 In this project, we leverage several unsupervised (PCA, LDA, etc.) and supervised (SVM, Naïve Bayes, etc) techniques for predicting Parkinson disease based on speech analysis data. Our methods not only achieve high accuracy on predicting Parkinson's presence, but also gain a significant improvement on predicting UPDRS score.
 
 However, the biggest limitation of our methods is the robustness. Since all of our models are based on two dataset (TE and MSR), when the testing data is gathered from different environment setting, such as longer samples, various pitch range or other data variance, then our models' performance will be easily influenced by these factors.
