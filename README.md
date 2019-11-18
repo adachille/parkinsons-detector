@@ -103,7 +103,7 @@ We can graph the covariance matrix of both datasets and see if they differ.
 <img src="./visualizations/multiple-sound-recoring-test-correlation-matrix.jpg" width="700" height="700">
 
 ### Dimension Reduction:
-Each dataset has many features, and from the covariance matrices we see that some features are highly correlated, so let's try doing some dimensionality reduction using PCA and LDA.
+Each dataset has many features, and from the covariance matrices we see that some features are highly correlated, so let's try doing some dimensionality reduction using principal component analysis (PCA) and linear discriminant analysis (LDA).
 
 Let's begin by using PCA on the datasets and seeing how many components we need to recover 99% of the variance.
 
@@ -119,7 +119,7 @@ Telemonitoring | 22 | 11
 
 We can see a great reduction in the number of components describing 99% of the variance in these datasets.
 
-Now, let's visualize the first two components of the TE and MSR train dataset. We've colored datapoints by the UPDRS score, a measure of PD severity.
+Now, let's visualize the first two components of the TE and MSR train dataset. We've colored datapoints by the UPDRS score, a measure of PD severity. For LDA, UPDRS scores are rounded, binned, and used for classes.
 <img src="./visualizations/PCA_LDA_TE_MSRtrain.jpg">
 
 Patients of varying disease severity were not separated in PCA plots. We see some separation of patient recordings with the highest and lowest UPDRS scores in the TE dataset accross component 2 on the y-axis.
