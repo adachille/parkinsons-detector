@@ -212,7 +212,16 @@ Hidden Layer 1 Size | Hidden Layer 2 Size | MAE
 500 | 200 | 8.22
 1000 | 500 | 8.07
 
-With more time, we would like to do some exploration on why neural networks with two layers and many nodes work better on the aggregate dataset. 
+Running the two-layer networks on the TE dataset, we get even more impressive results:
+
+Hidden Layer 1 Size | Hidden Layer 2 Size | MAE
+------------ | ------------- | -------------
+100 | 50 | 3.27
+200 | 100 | 3.31
+500 | 200 | 3.24
+1000 | 500 | 3.14
+
+With more time, we would like to do some exploration on why neural networks with two layers and many nodes work better on these datasets. 
 
 ## Applying our Models to Available Data
 One of the larger open datasets is the Mozilla Foundation's [Common Voice](voice.mozilla.org) dataset. It has 2454 hours of sound recordings spanning 29 languages. The data is published under C-0 license, which means all data is public domain.
