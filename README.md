@@ -68,13 +68,13 @@ The data was gathered from 42 people with early-stage Parkinson's disease. There
 
 ### Dataset Comparison
 
-Dataset | Data Points | Features 
+Dataset | Data Points | Features
 ------------ | ------------- | -------------
 Multiple Sound Recoring Training | 1040 | 29
 Multiple Sound Recoring Testing | 168 | 28
 Telemonitoring | 5875 | 22
 
-We note that the TE dataset has over 5 times as many data points as the MSR data sets. In our experiment, we use MSR and TE for training both classification and regression models. 
+We note that the TE dataset has over 5 times as many data points as the MSR data sets. In our experiment, we use MSR and TE for training both classification and regression models.
 
 ### Response data: UPDRS
 Although TE and MSR have different UPDRS score distributions, their score range is similar. As a result, we merge these two datasets together by their common features to build another, larger training dataset.
@@ -163,7 +163,7 @@ Since we have UPDRS scores for the MSR training dataset and the TE dataset, we w
 #### Training on TE
 
 We report the best result proposed by the original paper, which used Jitter(Abs), :Shimmer, NHR, HNR,
-DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model. 
+DFA, and PPE as the training features and Classification And Regression Tree (CART) as the model.
 In our experiment, we leveraged different feature processing methods for pre-processing our training data. We compare three methods 1) using original features 2) log transformation of the features and 3) PCA feature reduction. The results are shown in the followng table. We also tried various regression models and report the best two models (Random Forest Regressor and Extra Trees Regressor) here. By using Extra Trees Regressor and PCA dimension reduction, we can achieve an MAE score 4.38, which shows PCA has the ability to effectively improve the accuracy of these regressors and capture feature correlation.
 
 Method | feature | MAE
@@ -177,7 +177,7 @@ Extra Trees Regressor | PCA | 4.38
 
 #### Training on TE & MSR combination
 
-We also try to train our regression model with the aggregated set. 
+We also try to train our regression model with the aggregated set.
 
 Method | Features | MAE
 ------------ | ------------- | -------------
@@ -190,7 +190,7 @@ While the accuracies of the models trained on the joint dataset are worse, this 
 
 #### Neural Network Regression
 
-We also decided to try building some neural network models to test their efficacy. Due to the relatively low feature space and number of data points, we assumed they may be less effective than some other classical methods, but they ended up being just as effective, if tuned properly. 
+We also decided to try building some neural network models to test their efficacy. Due to the relatively low feature space and number of data points, we assumed they may be less effective than some other classical methods, but they ended up being just as effective, if tuned properly.
 
 We initially assumed that the neural network should be a single hidden layer deep, to handle a lack of linear seperability but to also prevent overfitting. We tried many different hidden layer sizes, with the joint dataset and PCA preprocessing. The results are shown below:
 
@@ -222,7 +222,7 @@ Hidden Layer 1 Size | Hidden Layer 2 Size | MAE
 500 | 200 | 3.24
 1000 | 500 | 3.14
 
-In the future, we would like to do some exploration on why neural networks with two layers and many nodes work better on these datasets. 
+In the future, we would like to do some exploration on why neural networks with two layers and many nodes work better on these datasets.
 
 ## Applying our Models to Available Data
 One of the larger open datasets is the Mozilla Foundation's [Common Voice](voice.mozilla.org) dataset. It has 2454 hours of sound recordings spanning 29 languages. The data is published under C-0 license, which means all data is public domain.
@@ -241,37 +241,60 @@ Age | Number of Samples
 80's  | 276
 90's  | 53
 
-### Results
+### Dataset Composition
+Total Samples: 46,813
 
-#### Classifier Predictions (MSR Train):
+Age | Number of Samples
+------------ | -------------
+40's | 21,824
+50's  | 10,700
+60's | 12,299
+70's  | 1,661
+80's  | 276
+90's  | 53
+
+### Results (MSR Train & TE)
+#### Classifier Predictions:
 
 Classifier | Prediction
 ------------ | -------------
-Random Forest Classifier | 50.4%
-Decision Tree | 54.7%
-Naïve Bayes |  44.7%
-Neural Network |  54.7%
-SVM | 32.8%
-
-#### Classifier Predictions (MSR Train & TE):
-
-Classifier | Prediction
------------- | -------------
-Random Forest Classifier | Insert Percent%
-Decision Tree | Insert Percent%
-Naïve Bayes |  Insert Percent%
-Neural Network |  Insert Percent%
+Random Forest Classifier | 100%
+Decision Tree | 61.1%
+Naïve Bayes |  49.1%
+Neural Network |  100%
 
 #### SVM Predictions by Kernel:
 
 Kernel | Prediction
 ------------ | -------------
-Linear | Insert Percent%
-RBF  | Insert Percent%
-Poly | Insert Percent%
+Linear | 99%
+RBF  | 73.8%
+Poly | 94.3%
+
+### Results (MSR)
+#### Classifier Predictions:
+
+Classifier | Prediction
+------------ | -------------
+Random Forest Classifier | 7.7%
+Decision Tree | 48.5%
+Naïve Bayes |  16.5%
+Neural Network |  16.8%
+
+#### SVM Predictions by Kernel:
+
+Kernel | Prediction
+------------ | -------------
+Linear |  48.1%
+RBF  | 13.1%
+Poly | 24.8%
+
 
 ### Discussion
 What does this tell us about our models?
+It is clear that there is over-prediction when it comes to the real world data, but this can be explained by two factors:
+1. MSR Train & TE had a very limited overlap in features
+2. MSR was 
 
 ### Limitations
 What limitations did we have?
