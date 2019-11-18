@@ -278,7 +278,6 @@ In this project, we leverage several unsupervised (PCA, LDA, etc.) and supervise
 
 However, the biggest limitation of our methods is the robustness. Since all of our models are based on two dataset (TE and MSR), when the testing data is gathered from different environment setting, such as longer samples, various pitch range or other data variance, then our models' performance will be easily influenced by these factors.
 
-
 ### Future Work
 This project leaves open several avenues for further research. Some of those are listed below:
 
@@ -286,6 +285,12 @@ This project leaves open several avenues for further research. Some of those are
 2. The Michael J Fox Foundation has a [dataset](https://www.kaggle.com/c/predicting-parkinson-s-disease-progression-with-smartphone-data/data) composed of smart phone data collected from 9 PD patients at varying stages of the disease and 7 control volunteers, roughly matched for age and gender over the course of 4 months. It includes raw audio and accelerometry data, which could both be utilized to create better models.
 3. Using the raw audio with deep neural networks would be another interesting area for exploration, as all of these datasets are based on speech-dervied features. The Michael J Fox dataset would be a good starting point for this research.
 
+### Significance
+An estimated 10 million people worldwide have PD. Since there is no effective cure for PD, early detection is the primary goal. However, PD is difficult to diagnose because symptoms often manifest in the late stages of the disesase. Therefore, there is a great need for early detection and monitoring methods, like speech analysis.
+
+In this project, we classified and predicted PD severity on the UPDRS. Our goal was to achieve accuracy that is comparable to average clinical diagnosis accuracy. A meta-analysis from 2016 of 20 studies showed that diagnostic accuracy was around 80%. While we acknowledge the limitations mentioned above, we were able to reach this threshold with the TE/MSR datasets. 
+
+Overall, speech detection of PD can be a powerful tool in early detection and monitoring of disease severity. We believe more effort should be invested in this field.
 
 ### Contribution
 Amy Hung - Classification, Regression
