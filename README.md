@@ -14,15 +14,9 @@ The aim of this project is to predict Parkinson's presence, and disease severity
 
 UPDRS scores range from 0 to 199, with 199 representing the greatest disease severity, or total disability [4].
 
-We include three datasets in our project as the training data. We use MSR for predicting Parkinsons's presence and use TE or the combination of TE and MSR for predicting disease severity (UPDRS).
+We include two datasets in our project as the training data. We use MSR or the combination of TE and MSR for predicting Parkinsons's presence, and we use TE or the MSR/TE combination for predicting disease severity (UPDRS).
 
-
-### [Disease Classification (DC) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson%27s+Disease+Classification#) [5]
-The data used in this study were gathered from 188 patients with Parkinsons and 64 healthy individuals. Researchers recorded the participants sustaining the phonation of the vowel /a/ for three repetitions.
-
-Speech signal processing algorithms including Time Frequency Features, Mel Frequency Cepstral Coefficients (MFCCs), Wavelet Transform based Features, Vocal Fold Features and TWQT features were also applied to the speech recordings to extract clinically useful information for PD assessment.
-
-### [Multiple Sound Recording (MSR) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson+Speech+Dataset+with++Multiple+Types+of+Sound+Recordings) [6]
+### [Multiple Sound Recording (MSR) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson+Speech+Dataset+with++Multiple+Types+of+Sound+Recordings) [5]
 
 ##### Training data
 The training data were gathered from 20 patients with Parkinsons and 20 healthy individuals. Multiple types of sound recordings were taken from each participant (listed below) and expert physicians assigned each participant a Unified Parkinson's Disease Rating Scale (UPDRS) score.
@@ -54,7 +48,7 @@ The testing data were gathered from 28 different patients with Parkinsons. The p
 * 1-3: sustained vowel (“a”)
 * 4-6: sustained vowel (“o”)
 
-### [Telemonitoring (TE) Dataset](http://archive.ics.uci.edu/ml/datasets/Parkinsons+Telemonitoring) [7]
+### [Telemonitoring (TE) Dataset](http://archive.ics.uci.edu/ml/datasets/Parkinsons+Telemonitoring) [6]
 The data was gathered from 42 people with early-stage Parkinson's disease. There are 16 voice measures, and two regression measurements: motor UPDRS and total UPDRS. Each row of the dataset contain corresponds to one voice recording. There are around 200 recordings per patient, the subject number of the patient is identified in the first column.
 
 **Features**
@@ -75,17 +69,14 @@ The data was gathered from 42 people with early-stage Parkinson's disease. There
 
 Dataset | Data Points | Features 
 ------------ | ------------- | -------------
-Disease Classification | 756 | 755
 Multiple Sound Recoring Training | 1040 | 29
 Multiple Sound Recoring Testing | 168 | 28
 Telemonitoring | 5875 | 22
 
-Immediately, we notice that the dimensionality of the DC dataset is very high in comparison to the other two datasets, with about 30 times the number of features. This is due to the speech signal processing algorithms that are run on the voice recordings on this dataset, including Time Frequency Features, Mel Frequency Cepstral Coefficients (MFCCs), Wavelet Transform based Features, Vocal Fold Features and TWQT features. These processes create many features.
-
-We also note that the DC and MSR datasets have a similar number of instances, while the TE dataset has over 5 times as many instances. None of these datasets are particularly large. As a result, in our experiment, we mainly use MSR and TE for training both classification and regression models, while leaving DC dataset as our future work to improve our method. 
+We note that the TE dataset has over 5 times as many data points as the MSR data sets. In our experiment, we use MSR and TE for training both classification and regression models. 
 
 ### Response data: UPDRS
-Although TE and MSR have different score distribution, but their score range is similar. As a result, we try to merge these two dataset to build a larger dataset as our training data.
+Although TE and MSR have different UPDRS score distributions, their score range is similar. As a result, we merge these two datasets together by their common features to build another, larger training dataset.
 Distributions of UPDRS scores:
 
 <img src="./visualizations/UPDRS_TE_MSR.jpg">
@@ -270,8 +261,6 @@ What does this tell us about our models?
 
 [4] UPDRS SCALE [Internet]. Theracycle. PD Resources; [cited 2019Nov16]. Available from: https://www.theracycle.com/pd-resources/links-and-additional-resources/updrs-scale/
 
-[5] Sakar, C. O., Serbes, G., Gunduz, A., Tunc, H. C., Nizam, H., Sakar, B. E., ... & Apaydin, H. (2019). A comparative analysis of speech signal processing algorithms for Parkinson’s disease classification and the use of the tunable Q-factor wavelet transform. Applied Soft Computing, 74, 255-263.
+[5] Erdogdu Sakar, B., Isenkul, M., Sakar, C.O., Sertbas, A., Gurgen, F., Delil, S., Apaydin, H., Kursun, O., 'Collection and Analysis of a Parkinson Speech Dataset with Multiple Types of Sound Recordings', IEEE Journal of Biomedical and Health Informatics, vol. 17(4), pp. 828-834, 2013.
 
-[6] Erdogdu Sakar, B., Isenkul, M., Sakar, C.O., Sertbas, A., Gurgen, F., Delil, S., Apaydin, H., Kursun, O., 'Collection and Analysis of a Parkinson Speech Dataset with Multiple Types of Sound Recordings', IEEE Journal of Biomedical and Health Informatics, vol. 17(4), pp. 828-834, 2013.
-
-[7] Tsanas, A., Little, M. A., McSharry, P. E., & Ramig, L. O. (2009). Accurate telemonitoring of Parkinson's disease progression by noninvasive speech tests. IEEE transactions on Biomedical Engineering, 57(4), 884-893.
+[6] Tsanas, A., Little, M. A., McSharry, P. E., & Ramig, L. O. (2009). Accurate telemonitoring of Parkinson's disease progression by noninvasive speech tests. IEEE transactions on Biomedical Engineering, 57(4), 884-893.
