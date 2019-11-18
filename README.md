@@ -241,18 +241,6 @@ Age | Number of Samples
 80's  | 276
 90's  | 53
 
-### Dataset Composition
-Total Samples: 46,813
-
-Age | Number of Samples
------------- | -------------
-40's | 21,824
-50's  | 10,700
-60's | 12,299
-70's  | 1,661
-80's  | 276
-90's  | 53
-
 ### Results (MSR Train & TE)
 #### Classifier Predictions:
 
@@ -294,7 +282,7 @@ Poly | 24.8%
 What does this tell us about our models?
 It is clear that there is over-prediction when it comes to the real world data, but this can be explained by two factors:
 1. MSR Train & TE had a very limited overlap in features
-2. MSR was 
+2. MSR was
 
 ### Limitations
 What limitations did we have?
