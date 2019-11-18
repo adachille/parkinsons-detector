@@ -288,11 +288,11 @@ This project leaves open several avenues for further research. Some of those are
 ### Contribution
 Amy Hung - Classification, Regression
 
+Anthony D'Achille - Data exploration, Unsupervised Learning
+
 Chris Scherban - Real life data feature extraction and prediction
 
 Jess Hoffman - Data aggregation, Regression
-
-Anthony D'Achille - Data exploration, Unsupervised Learning
 
 Yiting Zhang - Classification, Regression
 
