@@ -19,7 +19,7 @@ We include two datasets in our project as the training data. We use MSR or the c
 ### [Multiple Sound Recording (MSR) Dataset](https://archive.ics.uci.edu/ml/datasets/Parkinson+Speech+Dataset+with++Multiple+Types+of+Sound+Recordings) [5]
 
 ##### Training data
-The training data were gathered from 20 patients with Parkinsons and 20 healthy individuals. Multiple types of sound recordings were taken from each participant (listed below) and expert physicians assigned each participant a Unified Parkinson's Disease Rating Scale (UPDRS) score.
+The training data were gathered from 20 patients with Parkinsons and 20 healthy individuals. Multiple types of sound recordings were taken from each participant (listed below) and expert physicians assigned each participant a UPDRS score.
 
 **Utterances**
 * 1: sustained vowel (“a”)
@@ -32,14 +32,15 @@ The training data were gathered from 20 patients with Parkinsons and 20 healthy 
 **Features Training Data File:**
 * column 1: Subject id
 * columns 2-27: features
-* features 1-5: Jitter (local), Jitter (local, absolute), Jitter (rap), Jitter (ppq5), Jitter (ddp),
-* features 6-11: Shimmer (local), Shimmer (local, dB), Shimmer (apq3), Shimmer (apq5), Shimmer (apq11), Shimmer (dda)
-* features 12-14: AC,NTH,HTN
+
+* features 1-5: Jitter (local), Jitter (local, absolute), Jitter (rap), Jitter (ppq5), Jitter (ddp) - Several measures of variation in fundamental frequency
+* features 6-11: Shimmer (local), Shimmer (local, dB), Shimmer (apq3), Shimmer (apq5), Shimmer (apq11), Shimmer (dda) - Several measures of variation in amplitude
+* features 12-14: AC, NTH, HTN - Autocorrelation and ratio of noise to tonal components in the voice
 * features 15-19: Median pitch, Mean pitch, Standard deviation, Minimum pitch, Maximum pitch
 * features 20-23: Number of pulses, Number of periods, Mean period, Standard deviation of period
 * features 24-26: Fraction of locally unvoiced frames, Number of voice breaks, Degree of voice breaks
 * column 28: UPDRS
-* column 29: class information
+* column 29: Disease Class
 
 ##### Testing data
 The testing data were gathered from 28 different patients with Parkinsons. The patients are asked to say only the sustained vowels 'a' and 'o' three times each, producing 168 recordings. The same 26 features are extracted from the voice samples.
@@ -60,7 +61,7 @@ The data was gathered from 42 people with early-stage Parkinson's disease. There
 * total_UPDRS - Clinician's total UPDRS score, linearly interpolated
 * Jitter(%), Jitter(Abs), Jitter:RAP, Jitter:PPQ5, Jitter:DDP - Several measures of variation in fundamental frequency
 * Shimmer, Shimmer(dB), Shimmer:APQ3, Shimmer:APQ5, Shimmer:APQ11, Shimmer:DDA - Several measures of variation in amplitude
-* NHR,HNR - Two measures of ratio of noise to tonal components in the voice
+* NHR, HNR - Two measures of ratio of noise to tonal components in the voice
 * RPDE - A nonlinear dynamical complexity measure
 * DFA - Signal fractal scaling exponent
 * PPE - A nonlinear measure of fundamental frequency variation
