@@ -242,6 +242,8 @@ Age | Number of Samples
 90's  | 53
 
 ### Results
+The tables below give the percent of Mozilla Dataset Samples predicted to have Parkinsons. The population rate is ~1%.
+
 #### Classifier Predictions:
 
 Classifier | MSR Train | MSR Train & TE
@@ -272,9 +274,9 @@ Without this imbalance, examining the MSR data-set alone provided much more real
 
 ### Conclusion & Limitations
 What limitations did we have?
-In this project, we leverage several unsupervised (PCA, LDA, etc.) and supervised (SVM, Naïve Bayes, etc) techniques for predicting Parkinson disease based on speech analysis data. Our methods not only achieve high accuracy on predicting Parkinson's presence, but also gain a significant improvement on predicting UPDRS score. 
+In this project, we leverage several unsupervised (PCA, LDA, etc.) and supervised (SVM, Naïve Bayes, etc) techniques for predicting Parkinson disease based on speech analysis data. Our methods not only achieve high accuracy on predicting Parkinson's presence, but also gain a significant improvement on predicting UPDRS score.
 
-However, the biggest limitation of our methods is the robustness. Since all of our models are based on two dataset (TE and MSR), when the testing data is gathered from different environment setting, such as longer samples, various pitch range or other data variance, then our models' performance will be easily influenced by these factors. 
+However, the biggest limitation of our methods is the robustness. Since all of our models are based on two dataset (TE and MSR), when the testing data is gathered from different environment setting, such as longer samples, various pitch range or other data variance, then our models' performance will be easily influenced by these factors.
 
 
 ### Future Work
