@@ -273,6 +273,16 @@ Poly | Insert Percent%
 ### Discussion
 What does this tell us about our models?
 
+### Limitations
+What limitations did we have?
+
+### Future Work
+This project leaves open several avenues for further research. Some of those are listed below:
+
+1. Use the Disease Classification Dataset to create models that take advantage of other speech-derived features, such as Mels Frequency Ceptral Coefficients (MFCC's) and tunable-Q factor wavelet transform (TQFWT's). These features may lead to more accurate regression and classification.
+2. The Michael J Fox Foundation has a [dataset](https://www.kaggle.com/c/predicting-parkinson-s-disease-progression-with-smartphone-data/data) composed of smart phone data collected from 9 PD patients at varying stages of the disease and 7 control volunteers, roughly matched for age and gender over the course of 4 months. It includes raw audio and accelerometry data, which could both be utilized to create better models.
+3. Using the raw audio with deep neural networks would be another interesting area for exploration, as all of these datasets are based on speech-dervied features. The Michael J Fox dataset would be a good starting point for this research.
+
 ## References
 [1] Rascol, O.,Payoux, P.,Ory, F.,Ferreira, J. J., Brefel-Courbon, C. and Montastruc, J. (2003), Limitations of current Parkinson's disease therapy. Ann Neurol., 53: S3-S15.
 
