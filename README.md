@@ -115,12 +115,14 @@ Multiple Sound Recoring Training | 29 | 17
 Multiple Sound Recoring Testing | 28 | 12
 Telemonitoring | 22 | 11
 
+<img src="./visualizations/PCAVariance.png" width="400" height="250">
+
 We can see a great reduction in the number of components describing 99% of the variance in these datasets.
 
 Now, let's visualize the first two components of the TE and MSR train dataset. We've colored datapoints by the UPDRS score, a measure of PD severity.
 <img src="./visualizations/PCA_LDA_TE_MSRtrain.jpg">
 
-Patients of varying disease severity were not separated in both LDA and PCA plots. This is likely due to Considering, >11 components are needed to explain 99% of the variance, 
+Patients of varying disease severity were not separated in PCA plots. We see some separation of patient recordings with the highest and lowest UPDRS scores in the TE dataset accross component 2 on the y-axis.
 
 ## Supervised Learning & Prediciton of PD
 ### Datasets
